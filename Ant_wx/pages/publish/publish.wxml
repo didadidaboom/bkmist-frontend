@@ -1,0 +1,64 @@
+<!--pages/publish/publish.wxml-->
+<navBar title="发布" background='#60d1cf' back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view class="manu">
+    <view class="item-1">
+        <view bindtap="onClickPublish">发布</view>
+    </view>
+    <textarea value="{{pub_content}}" bindinput="onClickContent" placeholder="记录每一瞬间，发现你的与众不同" auto-focus="True" maxlength="255"></textarea>
+
+    <!--show choices-->
+    <view class="item-show" wx:if="{{pub_location_name}}">
+        <text bindtap="onClickLocation">{{pub_location_name}}</text>
+        <icon type="cancel" size="15" bindtap="onClickDelPosition"></icon>
+    </view>
+    <view wx:else>
+        <view class="item-show" wx:if="{{pub_location}}">
+            <text bindtap="onClickLocation">{{pub_location}}</text>
+            <icon type="cancel" size="15" bindtap="onClickDelPosition"></icon>
+        </view>
+    </view>
+    <view class="item-show" wx:if="{{pub_topicList.length}}">
+        <view class="item-show-topic">
+        <view wx:for="{{pub_topicList}}" wx:key="idxtopic" >
+            <text class="item-topic"  >#{{item.title}}</text>
+            <icon type="cancel" size="15" bindtap="onClickDelTopic" data-index="{{index}}"></icon>
+        </view>
+        </view>
+        <text class="item-topic-add" bindtap="onClickTopics">添加</text>
+    </view>
+    <view class="item-show" wx:if="{{pub_imageList.length}}">
+        <view class="item-show-img" wx:for="{{pub_imageList}}" wx:key="idximg">
+            <image src="{{item.path}}" data-imagesrc="{{item.path}}" data-imageindex="{{index}}"></image>
+            <icon type="cancel" size="15" bindtap="onClickDelCurrentImage" data-imageindex="{{index}}" data-imagesrc="{{item.path}}"></icon>
+        </view>
+        <image bindtap="onClickImage" wx:if="{{pub_imageList.length}}" src="/static/default/plus-images-icon.png"></image>
+    </view>
+
+    <!-- choices-->
+    <view class="item-2">
+        <view class="item-2-left">
+            <text hidden="{{pub_location_name}}" bindtap="onClickLocation" wx:if="{{pub_location_name}}">你的位置</text>
+            <text hidden="{{pub_location}}" bindtap="onClickLocation" wx:else>你的位置</text>
+            <text hidden="True" class="item-2-left-2">@他</text>
+        </view>
+        <view class="item-2-right">
+        <navigator wx:if="{{pub_moment_status==0}}" url="/pages/momentStatus/momentStatus"> >>广场可见</navigator>
+        <navigator wx:elif="{{pub_moment_status==1}}" url="/pages/momentStatus/momentStatus"> >>主页可见</navigator>
+        <navigator wx:else url="/pages/momentStatus/momentStatus"> >>个人可见</navigator>
+        </view>
+    </view>
+    <view class="item-3">
+        <view class="item-3-left">
+            <text hidden="True">语音</text>
+            <view hidden="{{pub_topicList.length}}" bindtap="onClickTopics">#话题</view>
+        </view>
+        <navigator wx:if="{{pub_if_status==0}}" url="/pages/ifStatus/ifStatus"> >>公开</navigator>
+        <navigator wx:else url="/pages/ifStatus/ifStatus"> >>条件隐身</navigator>
+    </view>
+    <view class="item-4">
+        <view class="item-4-right" hidden="True">
+            <view hidden="{{pub_imageList.length}}" bindtap="onClickImage">照片
+            </view>
+        </view>
+    </view>
+</view>

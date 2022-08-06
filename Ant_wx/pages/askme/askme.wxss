@@ -1,0 +1,68 @@
+/* pages/askme/askme.wxss */
+.manu{
+    font-size: 32rpx;
+    word-break: break-all;
+    word-wrap: break-word;
+    font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    background-color: #ffffff;
+}
+.manu-up{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50rpx;
+}
+.item-title{
+    border: 1rpx solid #60d1cf;
+    border-radius: 10%;
+    padding: 50rpx;
+}
+.item-status{
+    padding-top: 20rpx;
+}
+.item-title-txt{
+    color: red;
+    text-decoration:underline,
+}
+.item-content{
+    padding-top: 20rpx;
+    height: 120rpx;
+    width: 650rpx;
+    border-bottom: 1rpx solid #60d1cf;
+}
+button{
+    width: fit-content;
+    height: fit-content;
+    font-size: small;
+}
+.intro {
+    width: 686rpx;
+    height: 88rpx;
+    background: #60d1cf;
+    color: #FFF;
+    border-radius: 16rpx;
+    font-size: 32rpx;
+    text-align: center;
+    margin: 200rpx auto;
+  }
+.intro1{
+    width: 686rpx;
+    height: 88rpx;
+    background: #b8d8d7;
+    color: #FFF;
+    border-radius: 16rpx;
+    font-size: 32rpx;
+    text-align: center;
+    margin: 200rpx auto;
+  }
+.item-title-more{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      color: red;
+      padding-top: 10rpx;
+}
+.item-title-more-txt{
+    border-bottom: 1rpx solid #b8d8d7;
+}

@@ -1,0 +1,15 @@
+<!--pages/createtopic/createtopic.wxml-->
+<navBar title="创建话题" background='#60d1cf' back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view class="manu">
+    <view class="item-1">
+        <text>话题名:</text>
+        <input value="{{title}}" bindinput="onClickTitle" placeholder="请输入话题名"></input>
+    </view>
+    <view class="item-2">
+        <text>词条:</text>
+        <textarea value="{{description}}" bindinput="onClickDescription" placeholder="请添加词条描述"></textarea>
+    </view>
+    <view class="item-3">
+        <button bindtap="onClickCreate">创建</button>
+    </view>
+</view>

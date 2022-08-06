@@ -1,0 +1,80 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/publish/publish",
+        "pages/profile/profile",
+        "pages/login/login",
+        "pages/previewImage/previewImage",
+        "pages/topicList/topicList",
+        "pages/createtopic/createtopic",
+        "pages/momentDetails/momentDetails",
+        "components/customTabbar/customTabbar",
+        "pages/momentStatus/momentStatus",
+        "pages/ifStatus/ifStatus",
+        "pages/otherDetails/otherDetails",
+        "pages/changeName/changeName",
+        "pages/settings/settings",
+        "pages/topicMoment/topicMoment",
+        "pages/playaround/playaround",
+        "pages/tacitTest/tacitTest",
+        "pages/shareTacit/shareTacit",
+        "pages/replyTacit/replyTacit",
+        "components/shareBox/index",
+        "pages/completePublish/completePublish",
+        "pages/contribution/contribution",
+        "pages/plan/plan",
+        "pages/partner/partner",
+        "pages/profileViewer/profileViewer",
+        "pages/selfViewer/selfViewer",
+        "pages/friendViewer/friendViewer",
+        "pages/friendScanViewer/friendScanViewer",
+        "pages/friendSubmitViewer/friendSubmitViewer",
+        "pages/momentDetailViewer/momentDetailViewer",
+        "pages/userFocusList/userFocusList",
+        "pages/focusedList/focusedList",
+        "pages/changeGender/changeGender",
+        "pages/feedback/feedback",
+        "pages/about/about",
+        "pages/addressMoment/addressMoment",
+        "pages/friendList/friendList",
+        "pages/notification/notification",
+        "pages/askme/askme",
+        "pages/createAskMe/createAskMe",
+        "pages/askMeDetails/askMeDetails",
+        "pages/inviteFillAskMe/inviteFillAskMe"
+    ],
+    "permission": {
+        "scope.userLocation": {
+            "desc": "你的位置信息将用于小程序位置接口"
+        }
+    },
+    "window": {
+        "navigationBarBackgroundColor": "#60d1cf",
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "Ant",
+        "backgroundColor": "#ffffff",
+        "navigationStyle": "custom"
+    },
+    "usingComponents": {
+        "navBar": "/components/navBar/navBar"
+    },
+    "tabBar": {
+        "custom": true,
+        "selectedColor": "#FF0000",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "static/tabbar/icons8-edvard-munch-50.png",
+                "selectedIconPath": "static/tabbar/icons8-edvard-munch-50.png"
+            },
+            {
+                "pagePath": "pages/profile/profile",
+                "text": "我的",
+                "iconPath": "static/tabbar/icons8-edvard-munch-50.png",
+                "selectedIconPath": "static/tabbar/icons8-edvard-munch-50.png"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json"
+}

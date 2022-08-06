@@ -1,0 +1,74 @@
+<!--pages/playaround/playaround.wxml-->
+<navBar title="活动广场" background='#60d1cf' back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view class="manu">
+    <view class="item-1">
+        <text class="board-background">很多关系像泡面一样悄悄定义了这个时代，比如感情，朋友。希望通过各种玩法和活动，围绕沉淀关系，帮助对方从观点、创意、或者是能力开始想认识你，也欢迎投稿各种活动和玩法，参与定制规则</text>
+    </view>
+    <view class="item-2">
+        <text class="title">活动1：坦白局 (测试中)</text>
+        <text class="subtitle">目的:</text>
+        <text class="content">1.朋友的回答，会成为个人标签</text>
+        <text class="content">2.标签便于他人认识你</text>
+        <text class="content">3.转变成一条瞬间，并在广场显示，方便更多人认识你</text>
+        <text class="subtitle">规则:</text> 
+        <text class="content">1.随机选择1个问题，可编辑</text>
+        <text class="content">2.转发朋友圈，让朋友回答，朋友可选择条件匿名回答</text>
+    </view>
+    <view class="item-2">
+        <view class="item-login">
+            <text class="title">活动2：默契测试 (已可用)</text>
+            <view class="item-login-module" bindtap="onClickPublishTacit">发布入口</view>
+        </view>   
+        <text class="subtitle">目的:</text>
+        <text class="content">1.朋友的回答，会成为个人标签</text>
+        <text class="content">2.标签便于他人认识你</text>
+        <text class="subtitle">规则:</text> 
+        <text class="content">1.随机选择几个问题，可进行编辑</text>
+        <text class="content">2.选定定问题的答案</text>
+        <text class="content">3.转发朋友圈，让朋友回答并得到默契度，朋友可选择条件匿名回答</text>
+        <text class="content">4.当朋友回答受欢迎时，朋友匿名头像可裂开，并显示朋友微信头像</text>
+    </view>
+    <view class="item-2">
+        <text class="title">活动3:点亮足迹 (规划中)</text>
+        <text class="subtitle">目的:</text>
+        <text class="content">1.记录自己的足迹，成为个人标签</text>
+        <text class="content">2.标签便于他人认识你</text>
+        <text class="subtitle">规则:</text> 
+        <text class="content">1.根据自己经历，填充地图</text>
+        <text class="content">2.可选择转发朋友圈，晒出自己足迹</text>
+        <text class="content">3.足迹记录会进入个人瞬间</text>
+    </view>
+    <view class="item-2">
+        <text class="title">玩法1：条件匿名 (已可用)</text>
+        <text class="subtitle">目的:</text>
+        <text class="content">1.无压力的测试自己观点（创意）的受欢迎程度</text>
+        <text class="content">2.通过才华去认识你</text>
+        <text class="subtitle">规则:</text> 
+        <text class="content">1.在瞬间发布页，可以选择“条件匿名”</text>
+        <text class="content">2.在瞬间评论时，可以选择“条”</text>
+        <text class="content">3.一旦受欢迎（点赞到一定量），条件匿名会裂开，拥有“裂”的标签，他人可点击浏览个人瞬间</text>
+    </view>
+    <view class="item-2">
+        <text class="title">玩法2：评论区随机名字和头像 (已可用)</text>
+        <text class="subtitle">目的:</text>
+        <text class="content">1.增加趣味</text>
+        <text class="content">2.增强互动性</text>
+        <text class="subtitle">规则:</text> 
+        <text class="content">1.在任何一条瞬间内进行评论，随机产生一个新的名字和头像</text>
+    </view>
+    <view class="bottom-window-3">
+        <navigator url="/pages/plan/plan">
+            <text>计划</text>
+        </navigator>
+    </view>
+    <view class="bottom-window-2">
+        <navigator url="/pages/contribution/contribution">
+            <text>投稿</text>
+        </navigator>
+    </view>
+    <view class="bottom-window-1">
+        <navigator url="/pages/partner/partner">
+            <text>入伙</text>
+        </navigator>
+    </view>
+</view>

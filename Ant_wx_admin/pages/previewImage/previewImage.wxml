@@ -1,0 +1,7 @@
+<!--pages/previewImage/previewImage.wxml-->
+<view class="manu">
+    <view class="item-1">
+        <view class="item-1-right" bindtap="onClickDeleteImage">删除</view>
+    </view>
+    <image src="{{imagesrc}}"></image>
+</view>

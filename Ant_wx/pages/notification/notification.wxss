@@ -1,0 +1,188 @@
+/* pages/notification/notification.wxss */
+/*分类*/
+.item-classify{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.item-classify-1{
+    padding-left: 5px;
+    padding-right: 5px;
+    opacity: 0.2;
+}
+.item-classify-2{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.manu{
+    font-size: 32rpx;
+    word-break: break-all;
+    word-wrap: break-word;
+    font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    padding-top: 100rpx;
+    padding-bottom: 80rpx;
+}
+.item-0{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    opacity: 0.5;
+}
+.item-1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10rpx;
+}
+.item-1-type1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx;
+}
+.item-1-status{
+    color:#60d1cf;
+    border: 1rpx solid #60d1cf;
+    border-radius: 30%;
+}
+.item-1 image{
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+}
+.item-1-1{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.item-1-1-1{
+    display: flex;
+    flex-direction: column;
+    width: 600rpx;
+}
+.item-1-1-1-type1{
+    display: flex;
+    flex-direction: column;
+    width: 700rpx;
+}
+.item-1-1-1-2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.item-1-1-1-2-1{
+    color: #60d1cf;
+    font-size: 22rpx;
+}
+.item-1-1-2{
+    font-size: 40rpx;
+    color: #60d1cf;
+}
+.item-2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: 500rpx;
+    color: #60d1cf;
+}
+.item-3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10rpx;
+    color: #60d1cf;
+}
+
+/*底部*/
+.bottom-window{
+    width: 100rpx;
+    height: 100rpx;
+    position: fixed;
+    bottom: 80rpx;
+    right: 50rpx;
+    z-index: 20;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    background-color: white;
+    overflow-y: scroll;
+    
+    border: 1rpx solid #60d1cf;
+    border-radius: 50%;
+}
+.setting-img-content{
+    width: 30rpx;
+    height: 30rpx;
+    opacity: 0.5;
+}
+.setting-img{
+    width: 45rpx;
+    height: 45rpx;
+    padding-left: 10rpx;
+    opacity: 0.5;
+}
+.setting-img-pressed{
+    width: 45rpx;
+    height: 45rpx;
+    padding-left: 10rpx;
+    opacity: 1.0;
+}
+.placeholder{
+    font-size: 32rpx;
+    word-break: break-all;
+    word-wrap: break-word;
+    font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    border: 1rpx solid #60d1cf;
+}
+.place-name{
+    width: 500rpx;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+}
+.place-name-1{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.place-between{
+    width: 710rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.place-separate{
+    width: 710rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.place-center{
+    width: 710rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.place-left{
+    width: 710rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.name{
+    color: #60d1cf;
+}
+.afterName{
+    font-weight: bold;
+}
+.Checked{
+    opacity: 0.3;
+    color: black;
+}
+

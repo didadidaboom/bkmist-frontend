@@ -1,0 +1,124 @@
+<!--pages/momentDetails/momentDetails.wxml-->
+<navBar title='瞬间详情页' background='#60d1cf' back="{{true}}" home="{{true}}" bindback="handlerGobackClick" bindhome="handlerGohomeClick"></navBar>
+<view class="container" wx:if="{{moment.length==0}}">
+    <view class="sub-manu">123木头人，嘘...小心被发现...</view>
+</view>
+<view class="container" wx:else>
+    <!--头像和关注-->
+    <view class="item-1" wx:if="{{moment.user.id}}">
+        <navigator class="item-1-left" url="/pages/otherDetails/otherDetails?user_id={{moment.user.id}}">
+            <image src="{{moment.user.avatarUrl}}"></image>
+            <text class="item-1-status" wx:if="{{moment.if_status==1}}">{{moment.user.if_status_name}}</text>
+            <text>{{moment.user.nickName}}</text>
+        </navigator>
+        <view class="item-1-right" bindtap="onClickFocusUser" data-user_id="{{moment.user.id}}">
+            <text wx:if="{{moment.user.is_focused}}">已关注</text>
+            <text wx:else>关注</text>
+        </view>       
+    </view>
+    <view class="item-1" wx:else>
+        <view class="item-1-left">
+            <image src="{{moment.user.avatarUrl}}"></image>
+            <text class="item-1-status" wx:if="{{moment.if_status==1}}">{{moment.user.if_status_name}}</text>
+            <text>{{moment.user.nickName}}</text>
+        </view>
+        <view class="item-1-right-hiden">
+            <text wx:if="{{moment.user.is_focused}}" >已关注</text>
+            <text wx:else>关注</text>
+        </view>        
+    </view>
+    <!--内容-->
+    <view class="item-2">
+        <text>{{moment.create_date}}</text>
+    </view>
+    <view class="item-3">
+        <text>{{moment.content}}</text>
+    </view>
+    <view class="item-4" wx:if="{{moment.imageList.length}}">
+        <image wx:for="{{moment.imageList}}" wx:key="idx" src="{{item.path}}" mode="widthFix" ></image>
+    </view>
+    <view class="item-5" wx:if="{{moment.topic}}">
+        <view wx:for="{{moment.topic}}" wx:key="idxtopic">
+            <navigator url="/pages/topicMoment/topicMoment?topic_id={{item.id}}">
+            #{{item.title}}
+            </navigator>
+        </view>
+    </view>
+    <view class="item-6" wx:if="{{moment.address}}">
+        <view>
+            <navigator url="/pages/addressMoment/addressMoment?address_id={{moment.address.id}}">
+                <image class="setting-img-content" src="/static/default/icons8-location-48.png"></image>
+                {{moment.address.name}}
+            </navigator>
+        </view>
+    </view>
+    <view class="item-7">
+        <view>
+            <image class="setting-img" src="/static/default/icons8-comments-48.png"></image>
+            {{moment.comment_count}}
+        </view>
+        <view>
+            <image class="setting-img" src="/static/default/icons8-eye-48.png"></image>
+            {{moment.viewer_count}}
+        </view>
+        <view wx:if="{{moment.is_favor}}" class="red" data-mid="{{moment.id}}" data-mfavor="{{moment.favor_count}}" bindtap="onClickLikeMoment">
+            <image class="setting-img-pressed" src="/static/default/icons8-comment-like-48.png"></image>
+            {{moment.favor_count}}
+        </view>
+        <view wx:else data-mid="{{moment.id}}" data-mfavor="{{moment.favor_count}}" bindtap="onClickLikeMoment">
+            <image class="setting-img" src="/static/default/icons8-comment-like-48.png"></image>
+            {{moment.favor_count}}
+        </view>
+    </view>
+    <!--评论区-->
+    <view hidden="{{moment.comment_count}}" class="item-8-default">
+        快来分享分享你的看法哟~
+    </view>
+    <view class="item-8" wx:if="{{moment.comment_count}}">
+        <view class="comment-part" wx:for="{{moment.comment.commentRecord}}" wx:key="cidx">
+            <navigator wx:if="{{item.status.comment_status_user_id}}" class="item-8-left" url="/pages/otherDetails/otherDetails?user_id={{item.status.comment_status_user_id}}">
+                <image src="{{item.avatarUrl}}"></image>
+            </navigator>
+            <view wx:else class="item-8-left">
+                <image src="{{item.avatarUrl}}"></image>
+            </view>
+            <view class="comment" bindtap="onClickReply" data-cid="{{item.id}}" data-cuser_id="{{item.user_id}}" data-croot_id="{{item.root_id}}" data-cdepth="{{item.depth}}" data-cuser_avatar="{{item.avatarUrl}}">
+                <view class="comment-item-name">
+                    <text class="comment-item-name-nickname">{{item.nickName}}</text>
+                    <text wx:if="{{item.status.comment_status_name}}" class="comment-status">{{item.status.comment_status_name}}</text>
+                    <view class="setting-font" wx:if="{{item.is_favor}}" class="red" data-cid="{{item.id}}" data-cfavor="{{item.favor_count}}" data-cidx="{{index}}" bindtap="onClickLikeComment">
+                        <image class="setting-img-pressed-comment" src="/static/default/icons8-comment-like-48.png"></image>
+                        {{item.favor_count}}
+                    </view>
+                    <view class="setting-font" wx:else data-cid="{{item.id}}" data-cfavor="{{item.favor_count}}" data-cidx="{{index}}" bindtap="onClickLikeComment">
+                        <image class="setting-img-comment" src="/static/default/icons8-comment-like-48.png"></image>
+                        {{item.favor_count}}
+                    </view>
+                </view>
+                <view class="comment-item-time">
+                    <text>{{item.create_date}}</text>
+                </view>
+                <view hidden="{{item.reply_id}}" class="comment-item-content">
+                    <text>{{item.content}}</text>
+                </view>
+                <view class="comment-item-content-reply" wx:if="{{item.reply_id}}">
+                    <text>@</text>
+                    <text class="replyname">{{item.reply__nickName}}: </text>
+                    <text>{{item.content}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!--底部评论区-->
+    <view class="bottomView" style="bottom:{{keyboardHeight}}rpx">
+            <text class="commentAt">@</text>
+            <view class="commentImage">
+                <image src="{{BV_reply_avatarUrl}}"></image> 
+                <icon wx:if="{{BV_reply_id}}" type="cancel" size="15" bindtap="onClickCancel"></icon>
+            </view> 
+            <text wx:if="{{BV_comment_status==0}}" class="commentAnonymous" bindtap="onClickChangeCommentStatus" data-status="{{1}}">开</text>
+            <text wx:if="{{BV_comment_status==1}}" class="commentAnonymous" bindtap="onClickChangeCommentStatus" data-status="{{0}}">条</text>
+            <input value="{{BV_comment}}" bindinput="onClickCommentInput" class="commentsInput" placeholder-class='phcolor'  maxlength='100' placeholder="请输入评论...(100字以内)"> </input>
+            <text class="commentsBtn" bindtap="onClickSubmitComment">评论</text>
+    </view>
+</view>

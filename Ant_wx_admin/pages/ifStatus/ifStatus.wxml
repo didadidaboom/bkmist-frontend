@@ -1,0 +1,10 @@
+<!--pages/ifStatus/ifStatus.wxml-->
+<navBar title="瞬间显示状态" background='#60d1cf' back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view class="manu">
+    <view class="item-1">
+        <radio-group class="item-1-1" bindchange="onClickChoose">
+            <radio value="0">公开</radio>
+            <radio value="1">条件隐身</radio>
+        </radio-group>
+    </view>
+</view>

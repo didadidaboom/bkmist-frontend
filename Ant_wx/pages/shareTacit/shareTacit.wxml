@@ -1,0 +1,8 @@
+<!--pages/shareTacit/shareTacit.wxml-->
+<navBar title="活动分享" background='#60d1cf' back="{{true}}" home="{{true}}" bindback="handlerGobackClick" bindhome="handlerGohomeClick"></navBar>
+<view class="manu">
+    <button class="intro" bindtap="setFlag" >点我生成分享图</button>
+    <share-box isCanDraw="{{isCanDraw}}" flag="{{flag}}" bind:close="handleClose" />
+    <button class="intro1" bindtap="onClickSwitchToProfile" >查看记录</button>
+    <button class="intro1" bindtap="onClickSwitch">返回主页</button>
+</view>

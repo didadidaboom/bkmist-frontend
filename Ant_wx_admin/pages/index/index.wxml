@@ -1,0 +1,241 @@
+<!--pages/index/index.wxml-->
+<navBar background='#fff' bindback="handlerGobackClick" background="#60d1cf">
+    <view class='navbar-left' slot="left">
+        <view wx:if="{{token}}">
+            <navigator url="/pages/friendList/friendList">
+            <view>好友</view>
+            </navigator>
+        </view>
+        <view bindtap="onClickGetFriends" wx:else>
+            <view>好友</view>
+        </view>
+    </view>
+    <view class='navbar-center' slot="center">
+        <view class="item-classify-2" wx:if="{{classify_type==0}}">关注</view>
+        <view class="item-classify-1" bindtap="onClickClassify" data-value="{{0}}" wx:else>关注</view>
+        <view class="item-classify-2" wx:if="{{classify_type==1}}">最新</view>
+        <view class="item-classify-1" bindtap="onClickClassify" data-value="{{1}}" wx:else>最新</view>
+    </view>
+</navBar>
+<scroll-view class="scrollview" scroll-y style="width: 100%;height:{{scrollviewhigh}}px;" refresher-enabled="{{true}}" refresher-threshold="{{100}}" refresher-default-style="black" 
+        refresher-background="white" refresher-triggered="{{triggered}}" bindrefresherrefresh="onScrollRefresh" bindscrolltolower="scrollToLower" lower-threshold="150">
+<view class="manu">
+    <view class="manu-down" wx:if="{{classify_type==0}}">
+        <view class="manu-down-class" wx:if="{{token}}">
+            <view class="manu-topic">
+            <view wx:for="{{focusTopic}}" wx:key="topic">
+                <view class="manu-topic-1">
+                    <navigator url="/pages/topicMoment/topicMoment?topic_id={{item.topic_id}}">
+                        <view class="manu-topic-1-1">#{{item.topic_title}}</view>
+                    </navigator>
+                </view>
+            </view>
+            <view wx:for="{{focusAddress}}" wx:key="address">
+                <view class="manu-topic-1">
+                    <navigator url="/pages/addressMoment/addressMoment?address_id={{item.address_id}}">
+                        <view class="manu-topic-1-1">
+                            <image class="setting-img-content" src="/static/default/icons8-location-48.png"></image>
+                            {{item.address_title}}
+                        </view>
+                    </navigator>
+                </view>
+            </view>
+            </view>     
+            <view wx:if="{{momentList_focus_flag==2}}">
+            <view class="container" wx:for="{{momentList_focus}}" wx:key="moment">
+            <block wx:if="{{item.user.id}}">
+                <navigator class="item-1" url="/pages/otherDetails/otherDetails?user_id={{item.user.id}}">
+                    <image src="{{item.user.avatarUrl}}"></image>
+                    <view class="item-1-1">
+                        <view class="item-1-1-1">
+                            <text class="item-1-status" wx:if="{{item.if_status==1}}">{{item.user.if_status_name}}</text>
+                            <text>{{item.user.nickName}}</text>
+                        </view>
+                        <view class="item-1-1-2">
+                            {{item.create_date}}
+                        </view>
+                    </view>
+                </navigator>
+            </block>
+            <block wx:else>
+                <view class="item-1">
+                    <image src="{{item.user.avatarUrl}}"></image>
+                    <view class="item-1-1">
+                        <view class="item-1-1-1">
+                            <text class="item-1-status" wx:if="{{item.if_status==1}}">{{item.user.if_status_name}}</text>
+                            <text>{{item.user.nickName}}</text>
+                        </view>
+                        <view class="item-1-1-2">
+                            {{item.create_date}}
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <view class="item-2" wx:if="{{item.imageList.length}}">
+                <view class="item-2-im2" wx:if="{{item.imageList.length}}">
+                    <navigator class="item-2-im2-nav" url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+                        <image wx:for="{{item.imageList}}" wx:key="index" src="{{item.path}}" mode="aspectFill"></image>
+                    </navigator>
+                </view>
+            </view>
+            <view class="item-3">
+                <navigator url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+                <text>{{item.content}}</text>
+                </navigator>
+            </view>
+            <view class="item-4" wx:if="{{item.topic.length}}">
+                <view wx:for="{{item.topic}}" wx:key="idxtopic">
+                    <navigator url="/pages/topicMoment/topicMoment?topic_id={{item.id}}">
+                        #{{item.title}}
+                    </navigator>
+                </view>
+            </view>
+            <view class="item-5" wx:if="{{item.address}}">
+                <view>
+                    <navigator url="/pages/addressMoment/addressMoment?address_id={{item.address.id}}">
+                    <image class="setting-img-content" src="/static/default/icons8-location-48.png"></image>
+                    {{item.address.name}}
+                    </navigator>
+                </view>
+            </view>
+            <view class="item-6">
+                <view class="item-6-left">
+                    <text> </text>
+                </view>
+                <view class="item-6-right">
+                    <view wx:if="{{item.is_favor}}" data-mid="{{item.id}}" data-mfavor="{{item.favor_count}}" data-index="{{index}}" bindtap="onClickLikeMoment_focus">
+                        <image class="setting-img-pressed" src="/static/default/icons8-comment-like-48.png"></image>
+                        {{item.favor_count}}
+                    </view>
+                    <view wx:else data-mid="{{item.id}}" data-mfavor="{{item.favor_count}}" data-index="{{index}}" bindtap="onClickLikeMoment_focus">
+                        <image class="setting-img" src="/static/default/icons8-comment-like-48.png"></image>
+                        {{item.favor_count}}
+                    </view>
+                    <view>
+                        <navigator class="item-2-im2-nav" url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+                            <image class="setting-img" src="/static/default/icons8-comments-48.png"></image>
+                            {{item.comment_count}}
+                        </navigator>
+                    </view>
+                </view>
+            </view>
+            </view>
+            <view class="data-loading" hidden="{{hidden}}">数据加载中...</view>
+            </view>
+            <view wx:if="{{momentList_focus_flag==1}}">
+                <view class="container-bottom">没有更多的瞬间哟，赶紧去关注一些有趣的好友吧 (关注的人超过10个，关注的人发布的“条件匿名”瞬间会显示在此处</view>
+            </view>
+            <view wx:if="{{momentList_focus_flag==0}}">
+                <view class="reminder">个人世界探索中...</view>
+            </view>
+        </view>
+    </view>
+    <view class="manu-down" wx:if="{{classify_type==1}}">
+        <view wx:if="{{momentList_flag==2}}">
+        <view class="container" wx:for="{{momentList}}" wx:key="moment">
+            <block wx:if="{{item.user.id}}">
+                <navigator class="item-1" url="/pages/otherDetails/otherDetails?user_id={{item.user.id}}">
+                    <image src="{{item.user.avatarUrl}}"></image>
+                    <view class="item-1-1">
+                        <view class="item-1-1-1">
+                            <text class="item-1-status" wx:if="{{item.if_status==1}}">{{item.user.if_status_name}}</text>
+                            <text>{{item.user.nickName}}</text>
+                        </view>
+                        <view class="item-1-1-2">
+                            {{item.create_date}}
+                        </view>
+                    </view>
+                </navigator>
+            </block>
+            <block wx:else>
+                <view class="item-1">
+                    <image src="{{item.user.avatarUrl}}"></image>
+                    <view class="item-1-1">
+                        <view class="item-1-1-1">
+                            <text class="item-1-status" wx:if="{{item.if_status==1}}">{{item.user.if_status_name}}</text>
+                            <text>{{item.user.nickName}}</text>
+                        </view>
+                        <view class="item-1-1-2">
+                            {{item.create_date}}
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <view class="item-2" wx:if="{{item.imageList.length}}">
+                <view class="item-2-im2" wx:if="{{item.imageList.length}}">
+                    <navigator class="item-2-im2-nav" url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+                        <image wx:for="{{item.imageList}}" wx:key="index" src="{{item.path}}" mode="aspectFill"></image>
+                    </navigator>
+                </view>
+            </view>
+            <view class="item-3">
+                <navigator url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+                <text>{{item.content}}</text>
+                </navigator>
+            </view>
+            <view class="item-4" wx:if="{{item.topic.length}}">
+                <view wx:for="{{item.topic}}" wx:key="idxtopic">
+                    <navigator url="/pages/topicMoment/topicMoment?topic_id={{item.id}}">
+                        #{{item.title}}
+                    </navigator>
+                </view>
+            </view>
+            <view class="item-5" wx:if="{{item.address}}">
+                <view>
+                    <navigator url="/pages/addressMoment/addressMoment?address_id={{item.address.id}}">
+                    <image class="setting-img-content" src="/static/default/icons8-location-48.png"></image>
+                    {{item.address.name}}
+                    </navigator>
+                </view>
+            </view>
+            <view class="item-6">
+                <view class="item-6-left">
+                    <text> </text>
+                </view>
+                <view class="item-6-right">
+                    <view wx:if="{{item.is_favor}}" data-mid="{{item.id}}" data-mfavor="{{item.favor_count}}" data-index="{{index}}" bindtap="onClickLikeMoment">
+                        <image class="setting-img-pressed" src="/static/default/icons8-comment-like-48.png"></image>
+                        {{item.favor_count}}
+                    </view>
+                    <view wx:else data-mid="{{item.id}}" data-mfavor="{{item.favor_count}}" data-index="{{index}}" bindtap="onClickLikeMoment">
+                        <image class="setting-img" src="/static/default/icons8-comment-like-48.png"></image>
+                        {{item.favor_count}}
+                    </view>
+                    <view>
+                        <navigator class="item-2-im2-nav" url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+                            <image class="setting-img" src="/static/default/icons8-comments-48.png"></image>
+                            {{item.comment_count}}
+                        </navigator>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="data-loading" hidden="{{hidden}}">数据加载中...</view>
+        </view>
+        <view wx:if="{{momentList_flag==1}}">
+            <view class="reminder">新世界探索中...</view>
+        </view>
+        <view wx:if="{{momentList_flag==0}}">
+            <view class="reminder">新世界探索中...</view>
+        </view>
+    </view>
+</view>
+</scroll-view>
+<!--底部-->
+<view wx:if="{{classify_type==1}}" class="bottom-window-system">
+        <navigator url="/pages/manageUserRecord/manageUserRecord">
+            <text>记</text>
+        </navigator>
+</view>
+<view wx:if="{{classify_type==1}}" class="bottom-window">
+        <navigator url="/pages/manageuser/manageuser">
+            <text>用</text>
+        </navigator>
+</view>
+<view wx:if="{{classify_type==1}}" class="bottom-window-notification">
+        <navigator url="/pages/manageuser/manageuser">
+            <text>源</text>
+        </navigator>
+</view>
+
+<customTabbar selected="{{0}}"></customTabbar>

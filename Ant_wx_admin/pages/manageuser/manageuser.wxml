@@ -1,0 +1,44 @@
+<!--pages/manageuser/manageuser.wxml-->
+<navBar title="管理用户" background='#60d1cf' back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view class="manu">
+    <view class="item-1">
+        <input wx:if="{{selectedUser==0}}" class="item-1-input" value="{{chongselected.openid}}" bindinput="onClickChongInput" placeholder="用户为CHONG"></input>
+        <input wx:if="{{selectedUser==1}}" class="item-1-input" value="{{chselected.openid}}" bindinput="onClickCHInput" placeholder="用户为CH"></input>
+        <view class="item-1-1">
+            <view> 
+                <radio-group bindchange="onClickChooseUser">
+                    <radio value="{{0}}">CHONG</radio>
+                    <radio value="{{1}}">CH</radio>
+                </radio-group>
+            </view>
+            <view class="item-1-submit" bindtap="onClickUpdateOpenid">提交</view>
+        </view>       
+    </view>
+    <view class="item-2" wx:if="{{selectedUser==0}}">
+        CHONG用户列表：
+        <view wx:for="{{chonglist}}" wx:key="idxpre">
+            <view bindtap="onClickSelectChongUser" data-id="{{item.id}}" data-openid="{{item.openID}}" data-index="{{index}}" data-name="{{item.real_nickName}}">
+            <view class="item-2-up">
+            <view class="item-2-name">{{item.real_nickName}}</view>
+            <view class="item-2-name-right">r:{{item.create_date}}</view>
+            <view class="item-2-name-right">{{item.last_login}}</view>
+            </view>
+            <text class="item-2-text" user-select="{{true}}">{{item.openID}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="item-2" wx:if="{{selectedUser==1}}">
+        CH用户列表：
+        <view wx:for="{{chlist}}" wx:key="idxpre">
+            <view bindtap="onClickSelectCHUser" data-id="{{item.id}}" data-openid="{{item.openID}}" data-index="{{index}}" data-name="{{item.real_nickName}}">
+            <view class="item-2-up">
+            <view class="item-2-name">{{item.real_nickName}}</view>
+            <view class="item-2-name-right">r:{{item.create_date}}</view>
+            <view class="item-2-name-right">{{item.last_login}}</view>
+            </view>
+            <text class="item-2-text" user-select="{{true}}">{{item.openID}}</text>
+            </view>
+        </view>
+    </view>
+</view>
+

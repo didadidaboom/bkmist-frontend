@@ -1,0 +1,12 @@
+<!--pages/changeName/changeName.wxml-->
+<navBar title="名字修改" background='#60d1cf' back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view class="manu">
+    <view class="item-1">
+        <text>名字:</text>
+        <input value="{{name}}" placeholder="请输入名字" bindinput="onClickInputName"></input>
+    </view>
+    <view class="item-3">
+        <button bindtap="onClickSubmit">确认</button>
+        <button bindtap="onClickCancel">取消</button>
+    </view>
+</view>

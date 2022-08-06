@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "share-box": "/components/shareBox/index"
+  },
+  "navigationBarBackgroundColor": "#60d1cf",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "默契问答分享",
+  "backgroundColor": "#ffffff",
+  "backgroundTextStyle": "light"
+}

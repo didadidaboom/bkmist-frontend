@@ -1,0 +1,8 @@
+{
+  "usingComponents": {},
+  "navigationBarBackgroundColor": "#60d1cf",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "创建话题",
+  "backgroundColor": "#ffffff",
+  "backgroundTextStyle": "light"
+}

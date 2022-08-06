@@ -1,0 +1,545 @@
+<!--pages/notification/notification.wxml-->
+<navBar title="消息" background='#60d1cf' placeHolder="{{true}}" placecolor="#000000" placebackground="white" placehight='200' back="{{true}}" bindback="handlerGobackClick">
+    <view class='placeholder' slot="placeHolder">
+        <view class="place-separate">
+            <view class="item-classify-2" wx:if="{{classify_type==0}}">互动</view>
+            <view class="item-classify-1" bindtap="onClickClassify" data-value="{{0}}" wx:else>互动</view>
+            <view class="item-classify-2" wx:if="{{classify_type==1}}">通知</view>
+            <view class="item-classify-1" bindtap="onClickClassify" data-value="{{1}}" wx:else>通知</view>
+        </view>
+    </view>
+</navBar>
+<view class="manu">
+    <view class="manu-down" wx:if="{{classify_type==0}}">
+        <view wx:if="{{notification_page1}}">
+        <view class="item-1" wx:for="{{notification_page1}}" wx:for-item="item1" wx:for-index="index1" wx:key="idxprofile">
+            <block wx:if="{{item1.notificationType==11}}">
+            <view class="item-1-1">
+                <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view wx:else>
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view class="item-1-1-1">
+                    <view class="item-1-1-1-1">
+                        <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view wx:else>
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view bindtap="changeNotificationStatus_moment" data-moment_id="{{item1.moment_id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <view wx:if="{{item1.userHasChecked}}">
+                                <text>点赞了“我的瞬间”</text>
+                            </view>
+                            <view class="Checked" wx:else>
+                                <text>点赞了“我的瞬间”</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="item-1-1-1-2">
+                        <text class="item-1-1-1-2-1">{{item1.create_time}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="item-1-1-2"> </view>
+            </block>
+            <block wx:if="{{item1.notificationType==12}}">
+            <view class="item-1-1">
+                <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view wx:else>
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view class="item-1-1-1">
+                    <view class="item-1-1-1-1">
+                        <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view wx:else>
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view bindtap="changeNotificationStatus_moment" data-moment_id="{{item1.moment_id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <view wx:if="{{item1.userHasChecked}}">
+                                <text>点赞了“我的评论：</text>
+                                <text>{{item1.comment_content}}”</text>
+                            </view>
+                            <view class="Checked" wx:else>
+                                <text>点赞了“我的评论：</text>
+                                <text>{{item1.comment_content}}”</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="item-1-1-1-2">
+                        <text class="item-1-1-1-2-1">{{item1.create_time}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="item-1-1-2"> </view>
+            </block>
+            <block wx:if="{{item1.notificationType==13}}">
+            <view class="item-1-1">
+                <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view wx:else>
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view class="item-1-1-1">
+                    <view class="item-1-1-1-1">
+                        <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view wx:else>
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view wx:if="{{item1.tacit_user_id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.tacit_user_id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <view wx:if="{{item1.userHasChecked}}">
+                                <text>点赞了我的“好友默契测试的回复”</text>
+                            </view>
+                            <view class="Checked" wx:else>
+                                <text>点赞了我的“好友默契测试的回复”</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="item-1-1-1-2">
+                        <text class="item-1-1-1-2-1">{{item1.create_time}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="item-1-1-2"> </view>
+            </block>
+            <block wx:if="{{item1.notificationType==21}}">
+            <view class="item-1-1">
+                <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view wx:else>
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view class="item-1-1-1">
+                    <view class="item-1-1-1-1">
+                        <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view wx:else>
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view bindtap="changeNotificationStatus_moment" data-moment_id="{{item1.moment_id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <view wx:if="{{item1.userHasChecked}}">
+                                <text>回复了"我的评论":</text>
+                                <text>{{item1.comment_content}}</text>
+                            </view>
+                            <view class="Checked" wx:else>
+                                <text>回复了"我的评论":</text>
+                                <text>{{item1.comment_content}}</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="item-1-1-1-2">
+                        <text class="item-1-1-1-2-1">{{item1.create_time}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="item-1-1-2"> </view>
+            </block>
+            <block wx:if="{{item1.notificationType==22}}">
+            <view class="item-1-1">
+                <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view wx:else>
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view class="item-1-1-1">
+                    <view class="item-1-1-1-1">
+                        <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view wx:else>
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view bindtap="changeNotificationStatus_moment" data-moment_id="{{item1.moment_id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <view wx:if="{{item1.userHasChecked}}">
+                                <text>评论了"你发起的评论":</text>
+                                <text>{{item1.comment_content}}</text>
+                            </view>
+                            <view class="Checked" wx:else>
+                                <text>评论了"你发起的评论":</text>
+                                <text>{{item1.comment_content}}</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="item-1-1-1-2">
+                        <text class="item-1-1-1-2-1">{{item1.create_time}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="item-1-1-2"> </view>
+            </block>
+            <block wx:if="{{item1.notificationType==23}}">
+            <view class="item-1-1">
+                <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view wx:else>
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view class="item-1-1-1">
+                    <view class="item-1-1-1-1">
+                        <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view wx:else>
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view bindtap="changeNotificationStatus_moment" data-moment_id="{{item1.moment_id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <view wx:if="{{item1.userHasChecked}}">
+                                <text>评论了"我的瞬间":</text>
+                                <text>{{item1.comment_content}}</text>
+                            </view>
+                            <view class="Checked" wx:else>
+                                <text>评论了"我的瞬间":</text>
+                                <text>{{item1.comment_content}}</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="item-1-1-1-2">
+                        <text class="item-1-1-1-2-1">{{item1.create_time}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="item-1-1-2"> </view>
+            </block>
+            <block wx:if="{{item1.notificationType==31}}">
+            <view class="item-1-1">
+                <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userhaschecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view wx:else>
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view class="item-1-1-1">
+                    <view class="item-1-1-1-1">
+                        <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <viewv wx:else>
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </viewv>
+                        <view wx:if="{{item1.userHasChecked}}">
+                            <text>关注了“我”</text>
+                        </view>
+                        <view class="Checked" wx:else>
+                            <text>关注了“我”</text>
+                        </view>
+                    </view>
+                    <view class="item-1-1-1-2">
+                        <text class="item-1-1-1-2-1">{{item1.create_time}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="item-1-1-2"> </view>
+            </block>
+            <block wx:if="{{item1.notificationType==32}}">
+            <view class="item-1-1">
+                <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view wx:else>
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view class="item-1-1-1">
+                    <view class="item-1-1-1-1">
+                        <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view wx:else>
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view wx:if="{{item1.userHasChecked}}">
+                            <text>取消了关注“我”</text>
+                        </view>
+                        <view class="Checked" wx:else>
+                            <text>取消了关注“我”</text>
+                        </view>
+                    </view>
+                    <view class="item-1-1-1-2">
+                        <text class="item-1-1-1-2-1">{{item1.create_time}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="item-1-1-2"> </view>
+            </block>
+            <block wx:if="{{item1.notificationType==41}}">
+            <view class="item-1-1">
+                <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view wx:else>
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view class="item-1-1-1">
+                    <view class="item-1-1-1-1">
+                        <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view wx:else>
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view wx:if="{{item1.tacit_user_id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.tacit_user_id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <view wx:if="{{item1.userHasChecked}}">
+                                <text>填写了我的“好友默契测试”活动</text>
+                            </view>
+                            <view class="Checked" wx:else>
+                                <text>填写了我的“好友默契测试”活动</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="item-1-1-1-2">
+                        <text class="item-1-1-1-2-1">{{item1.create_time}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="item-1-1-2"> </view>
+            </block>
+            <block wx:if="{{item1.notificationType==51}}">
+            <view class="item-1-1">
+                <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userhaschecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view wx:else>
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view class="item-1-1-1">
+                    <view class="item-1-1-1-1">
+                        <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <viewv wx:else>
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </viewv>
+                        <view wx:if="{{item1.userHasChecked}}">
+                            <text>邀请“我”发瞬间</text>
+                        </view>
+                        <view class="Checked" wx:else>
+                            <text>邀请“我”发瞬间</text>
+                        </view>
+                    </view>
+                    <view class="item-1-1-1-2">
+                        <text class="item-1-1-1-2-1">{{item1.create_time}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="item-1-1-2"> </view>
+            </block>
+            <block wx:if="{{item1.notificationType==52}}">
+            <view class="item-1-1">
+                <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userhaschecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view wx:else>
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view class="item-1-1-1">
+                    <view class="item-1-1-1-1">
+                        <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <viewv wx:else>
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </viewv>
+                        <view wx:if="{{item1.userHasChecked}}">
+                            <text>邀请“我”发布“我的独白”活动</text>
+                        </view>
+                        <view class="Checked" wx:else>
+                            <text>邀请“我”发布“我的独白”活动</text>
+                        </view>
+                    </view>
+                    <view class="item-1-1-1-2">
+                        <text class="item-1-1-1-2-1">{{item1.create_time}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="item-1-1-2"> </view>
+            </block>
+            <block wx:if="{{item1.notificationType==61}}">
+            <view class="item-1-1">
+                <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view wx:else>
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view class="item-1-1-1">
+                    <view class="item-1-1-1-1">
+                        <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view wx:else>
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view bindtap="changeNotificationStatus_moment" data-moment_id="{{item1.moment_id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <view wx:if="{{item1.userHasChecked}}">
+                                <text>取消了点赞“我的瞬间”</text>
+                            </view>
+                            <view class="Checked" wx:else>
+                                <text>取消了点赞“我的瞬间”</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="item-1-1-1-2">
+                        <text class="item-1-1-1-2-1">{{item1.create_time}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="item-1-1-2"> </view>
+            </block>
+            <block wx:if="{{item1.notificationType==62}}">
+            <view class="item-1-1">
+                <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view wx:else>
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view class="item-1-1-1">
+                    <view class="item-1-1-1-1">
+                        <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view wx:else>
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view bindtap="changeNotificationStatus_moment" data-moment_id="{{item1.moment_id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <view wx:if="{{item1.userHasChecked}}">
+                                <text>取消了点赞“我的评论：</text>
+                                <text>{{item1.comment_content}}”</text>
+                            </view>
+                            <view class="Checked" wx:else>
+                                <text>取消了点赞“我的评论：</text>
+                                <text>{{item1.comment_content}}”</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="item-1-1-1-2">
+                        <text class="item-1-1-1-2-1">{{item1.create_time}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="item-1-1-2"> </view>
+            </block>
+            <block wx:if="{{item1.notificationType==63}}">
+            <view class="item-1-1">
+                <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view wx:else>
+                    <image src="{{item1.fromUser.avatarUrl}}"></image>
+                </view>
+                <view class="item-1-1-1">
+                    <view class="item-1-1-1-1">
+                        <view wx:if="{{item1.fromUser.id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.fromUser.id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view wx:else>
+                            <text class="item-1-status" wx:if="{{item1.fromUser.if_status_name}}">{{item1.fromUser.if_status_name}}</text>
+                            <text class="name">{{item1.fromUser.nickName}}</text>
+                        </view>
+                        <view wx:if="{{item1.tacit_user_id}}" bindtap="changeNotificationStatus_user" data-user_id="{{item1.tacit_user_id}}" data-notify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <view wx:if="{{item1.userHasChecked}}">
+                                <text>取消了点赞我的“好友默契测试的回复”</text>
+                            </view>
+                            <view class="Checked" wx:else>
+                                <text>取消了点赞我的“好友默契测试的回复”</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="item-1-1-1-2">
+                        <text class="item-1-1-1-2-1">{{item1.create_time}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="item-1-1-2"> </view>
+            </block>
+        </view>
+        </view>
+        <view class="item-2" hidden="{{notification_page1}}">
+            互动消息获取中
+        </view>
+        <view class="item-3" wx:if="{{notification_page1.length==0}}">
+            暂时还没任何互动消息哟
+        </view>
+    </view>
+    <view class="manu-down" wx:if="{{classify_type==1}}">
+        <view wx:if="{{notification_page2}}">
+            <view class="item-1-type1" wx:for="{{notification_page2}}" wx:for-item="item1" wx:for-index="index1" wx:key="idxprofile">
+            <block wx:if="{{token}}">
+            <view class="item-1-1">
+                <view class="item-1-1-1-type1">
+                    <view class="item-1-1-1-1">
+                        <view bindtap="changeNotificationStatus_system" data-systemnotify_id="{{item1.id}}" data-userHasChecked="{{item1.userHasChecked}}" data-index="{{index1}}">
+                            <view wx:if="{{item1.userHasChecked}}">
+                                <text user-select="{{true}}">{{item1.content}}</text>
+                            </view>
+                            <view class="Checked" wx:else>
+                                <text user-select="{{true}}">{{item1.content}}</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="item-1-1-1-2">
+                        <text class="item-1-1-1-2-1">{{item1.create_time}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="item-1-1-2"> </view>
+            </block>
+            <block wx:else>
+            <view class="item-1-1">
+                <view class="item-1-1-1-type1">
+                    <view class="item-1-1-1-1">
+                        <text user-select="{{true}}">{{item1.content}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="item-1-1-2"> </view>
+            </block>
+            </view>
+        </view>
+        <view class="item-2" hidden="{{notification_page2}}">
+            通知获取中
+        </view>
+        <view class="item-3" wx:if="{{notification_page2.length==0}}">
+            暂时还没任何通知哟
+        </view>
+    </view>
+</view>

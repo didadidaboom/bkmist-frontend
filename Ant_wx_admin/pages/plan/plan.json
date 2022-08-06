@@ -1,0 +1,8 @@
+{
+  "usingComponents": {},
+  "navigationBarBackgroundColor": "#60d1cf",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "计划",
+  "backgroundColor": "#ffffff",
+  "backgroundTextStyle": "light"
+}

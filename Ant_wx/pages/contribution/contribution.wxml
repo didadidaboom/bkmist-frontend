@@ -1,0 +1,5 @@
+<!--pages/contribution/contribution.wxml-->
+<navBar title="投稿" background='#60d1cf' back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view>
+    暂时还未开放，超级感谢参与哟
+</view>

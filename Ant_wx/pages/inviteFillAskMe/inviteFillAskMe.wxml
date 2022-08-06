@@ -1,0 +1,27 @@
+<!--pages/inviteFillAskMe/inviteFillAskMe.wxml-->
+<navBar title="坦白局继续发布" background='#60d1cf' back="{{true}}" home="{{true}}" bindback="handlerGobackClick" bindhome="handlerGohomeClick"></navBar>
+<view class="manu">
+    <view class="manu-up">
+        <view class="item-up-1">朋友圈展示效果（支持安卓手机）：</view>
+        <view class="item-up-2">
+            <view class="item-up-img">
+                <image src="{{real_avatarUrl}}"></image>
+            </view>
+            我发起了“坦白局”活动，赶紧前往"条件匿名/公开"对我提问吧（Ask me anything）
+        </view>
+        <view class="item-up-3">发送给朋友展示效果（支持安卓和苹果）：</view>
+        <view class="item-up-4">
+            我发起了“坦白局”活动，赶紧前往"条件匿名/公开"对我提问吧（Ask me anything）
+            <image src="{{real_avatarUrl}}"></image>
+        </view>
+    </view>
+    <view class="manu-down">
+        <view class="manu-down-1">继续发布流程</view>
+        <view>
+            <view class="item-procedure">点击右上角菜单点击“发送给朋友”或者“分享到朋友圈”</view>
+        </view>
+        <view>
+            <button bindtap="onClickAskMeRecord">点击查看创建记录</button>
+        </view>
+    </view>
+</view>

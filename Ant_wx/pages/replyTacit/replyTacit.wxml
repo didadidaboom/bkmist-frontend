@@ -1,0 +1,132 @@
+<!--pages/replyTacit/replyTacit.wxml-->
+<navBar title="默契测试填写" background='#60d1cf' home="{{true}}" bindhome="handlerGohomeClick"></navBar>
+<view class="manu" wx:if="{{is_not_preview==0}}">
+    <view class="item-1">
+        <view>
+            <image src="{{tacitList.avatarUrl}}"></image>
+        </view>
+        <view> 面对下面十道问答，你觉得"{{tacitList.nickName}}"会如何表现呢？</view>
+    </view>
+    <view class="item-2">
+        <text class="title">{{tacitindex+1}}, {{tacitList.tacitDataList[tacitindex].title}}</text>
+            <view class="content-style" wx:if="{{tacitList.tacitDataList[tacitindex].selected_answer==1}}">
+                <text class="content-selected" wx:if="{{tacitList.tacitDataList[tacitindex].answer1}}" bindtap="onClickNextPage" data-index="{{tacitindex}}" data-answerindex="{{1}}" data-tacitid="{{tacitList.tacitDataList[tacitindex].id}}">1, {{tacitList.tacitDataList[tacitindex].answer1}}</text>
+            </view>
+            <view class="content-style" wx:else>
+                <text class="content" wx:if="{{tacitList.tacitDataList[tacitindex].answer1}}" bindtap="onClickNextPage" data-index="{{tacitindex}}" data-answerindex="{{1}}" data-tacitid="{{tacitList.tacitDataList[tacitindex].id}}">1, {{tacitList.tacitDataList[tacitindex].answer1}}</text>
+            </view>
+            <view class="content-style" wx:if="{{tacitList.tacitDataList[tacitindex].selected_answer==2}}">
+                <text class="content-selected" wx:if="{{tacitList.tacitDataList[tacitindex].answer2}}" bindtap="onClickNextPage" data-index="{{tacitindex}}" data-answerindex="{{2}}" data-tacitid="{{tacitList.tacitDataList[tacitindex].id}}">2, {{tacitList.tacitDataList[tacitindex].answer2}}</text>
+            </view>
+            <view class="content-style" wx:else>
+                <text class="content" wx:if="{{tacitList.tacitDataList[tacitindex].answer2}}" bindtap="onClickNextPage" data-index="{{tacitindex}}" data-answerindex="{{2}}" data-tacitid="{{tacitList.tacitDataList[tacitindex].id}}">2, {{tacitList.tacitDataList[tacitindex].answer2}}</text>
+            </view>
+            <view class="content-style" wx:if="{{tacitList.tacitDataList[tacitindex].selected_answer==3}}">
+                <text class="content-selected" wx:if="{{tacitList.tacitDataList[tacitindex].answer3}}" bindtap="onClickNextPage" data-index="{{tacitindex}}" data-answerindex="{{3}}" data-tacitid="{{tacitList.tacitDataList[tacitindex].id}}">3, {{tacitList.tacitDataList[tacitindex].answer3}}</text>
+            </view>
+            <view class="content-style" wx:else>
+                <text class="content" wx:if="{{tacitList.tacitDataList[tacitindex].answer3}}" bindtap="onClickNextPage" data-index="{{tacitindex}}" data-answerindex="{{3}}" data-tacitid="{{tacitList.tacitDataList[tacitindex].id}}">3, {{tacitList.tacitDataList[tacitindex].answer3}}</text>
+            </view>
+            <view class="content-style" wx:if="{{tacitList.tacitDataList[tacitindex].selected_answer==4}}">
+                <text class="content-selected" wx:if="{{tacitList.tacitDataList[tacitindex].answer4}}" bindtap="onClickNextPage" data-index="{{tacitindex}}" data-answerindex="{{4}}" data-tacitid="{{tacitList.tacitDataList[tacitindex].id}}">4, {{tacitList.tacitDataList[tacitindex].answer4}}</text>
+            </view>
+            <view class="content-style" wx:else>
+                <text class="content" wx:if="{{tacitList.tacitDataList[tacitindex].answer4}}" bindtap="onClickNextPage" data-index="{{tacitindex}}" data-answerindex="{{4}}" data-tacitid="{{tacitList.tacitDataList[tacitindex].id}}">4, {{tacitList.tacitDataList[tacitindex].answer4}}</text>
+            </view>
+            <view class="content-style" wx:if="{{tacitList.tacitDataList[tacitindex].selected_answer==5}}">
+                <text class="content-selected" wx:if="{{tacitList.tacitDataList[tacitindex].answer5}}" bindtap="onClickNextPage" data-index="{{tacitindex}}" data-answerindex="{{5}}" data-tacitId="{{tacitList.tacitDataList[tacitindex].id}}">5, {{tacitList.tacitDataList[tacitindex].answer5}}</text>
+            </view>
+            <view class="content-style" wx:else>
+                <text class="content" wx:if="{{tacitList.tacitDataList[tacitindex].answer5}}" bindtap="onClickNextPage" data-index="{{tacitindex}}" data-answerindex="{{5}}" data-tacitId="{{tacitList.tacitDataList[tacitindex].id}}">5, {{tacitList.tacitDataList[tacitindex].answer5}}</text>
+            </view>
+            <text class="notice">选择正确的答案进入下一题哟</text>
+    </view>
+    <view class="item-3">
+        <view wx:if="{{tacitindex}}" bindtap="onClickPreviouPage">上一题</view>
+        <view wx:else class="previoupage">上一题</view>
+        <text wx:if="{{correct_answer.length==10}}" bindtap="onClickPreview">预览</text>
+        <text wx:else class="previoupage">预览</text>
+        <text wx:if="{{correct_answer.length==10}}" bindtap="onClickComplete">下一步</text>
+        <text wx:else class="previoupage" bindtap="onClickComplete">下一步</text>
+    </view>
+</view>
+<!--预览-->
+<view class="manu" wx:elif="{{is_not_preview==1}}">
+    <view class="item-2" wx:for="{{tacitList.tacitDataList}}" wx:key="idxtacit">
+        <text class="title">{{index+1}}, {{item.title}}</text>
+        <view class="content-style" wx:if="{{item.selected_answer==1}}">
+                <text class="content-selected" wx:if="{{item.answer1}}">1, {{item.answer1}}</text>
+        </view>
+        <view class="content-style" wx:else>
+                <text class="content" wx:if="{{item.answer1}}">1, {{item.answer1}}</text>
+        </view>
+        <view class="content-style" wx:if="{{item.selected_answer==2}}">
+                <text class="content-selected" wx:if="{{item.answer2}}">2, {{item.answer2}}</text>
+        </view>
+        <view class="content-style" wx:else>
+                <text class="content" wx:if="{{item.answer2}}">2, {{item.answer2}}</text>
+        </view>
+        <view class="content-style" wx:if="{{item.selected_answer==3}}">
+                <text class="content-selected" wx:if="{{item.answer3}}">3, {{item.answer3}}</text>
+        </view>
+        <view class="content-style" wx:else>
+                <text class="content" wx:if="{{item.answer3}}">3, {{item.answer3}}</text>
+        </view>
+        <view class="content-style" wx:if="{{item.selected_answer==4}}">
+                <text class="content-selected" wx:if="{{item.answer4}}">4, {{item.answer4}}</text>
+        </view>
+        <view class="content-style" wx:else>
+                <text class="content" wx:if="{{item.answer4}}">4, {{item.answer4}}</text>
+        </view>
+        <view class="content-style" wx:if="{{item.selected_answer==5}}">
+                <text class="content-selected" wx:if="{{item.answer5}}">5, {{item.answer5}}</text>
+        </view>
+        <view class="content-style" wx:else>
+                <text class="content" wx:if="{{item.answer5}}">5, {{item.answer5}}</text>
+        </view>
+    </view>
+    <view class="item-3">
+        <text bindtap="onClickCancel">返回</text>
+        <text wx:if="{{correct_answer.length==10}}" bindtap="onClickComplete">下一步</text>
+        <text wx:else class="previoupage" bindtap="onClickComplete">下一步</text>
+    </view>
+</view>
+<!--完成-->
+<view class="manu" wx:elif="{{is_not_preview==2}}">
+    <view class="item-1-1" wx:if="{{token}}">
+        <block wx:if="{{real_avatarUrl}}">
+        <image src="{{real_avatarUrl}}"></image>
+        </block>
+        <block wx:else>
+        <text>头像加载中</text>
+        </block>
+        <!-- <image wx:if="{{avatarUrlFlag}}" src="{{real_avatarUrl}}"></image>
+        <image wx:else src="{{avatarUrl}}"></image>
+        <text bindtap="onClickWXGetImage" wx:if="{{avatarUrlFlag==0}}" data-flag="{{1}}">点击使用微信头像</text>
+        <text bindtap="onClickWXGetImage" wx:if="{{avatarUrlFlag==1}}" data-flag="{{0}}">点击使用随机头像</text> -->
+    </view>
+    <view class="item-1-1" wx:else>
+        <image src="/static/default/pre-profile.jpg"></image>
+        <navigator url="/pages/login/login">点击获取头像</navigator>
+    </view>
+    <view class="item-1-2">
+        <view class="item-bonus">
+            <view>状态选择</view>
+            <view class="item-bonus-choice">
+                <radio-group bindchange="onClickGetStatus">
+                    <radio value="{{0}}" checked="{{checked}}"></radio> <text>公开</text>
+                    <radio value="{{1}}"></radio> <text>条件匿名</text>
+                </radio-group>
+            </view>
+        </view>
+        <view class="notice-setting">
+            <view class="notice">公开: 显示头像，并可被查看身份</view>
+            <view class="notice">条件匿名: 不显示头像，不可以被查看身份，但受欢迎（点赞）到一定程度可以被查看身份</view>
+        </view>
+    </view>
+    <view class="item-1-3">
+        <view class="item-1-3-1" bindtap="onClickSubmit">完成</view>
+        <view class="item-1-3-1" bindtap="onClickCompleteCancel">返回</view>
+    </view>
+</view>
+

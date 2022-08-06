@@ -1,0 +1,185 @@
+<!--pages/managePersonalandPageData/managePersonalandPageData.wxml-->
+<navBar title="个人活动记录" background='#60d1cf' back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view class="manu">
+    <view class="manu-personal">
+        <text>个人主页浏览记录</text>
+        <view class="item-p" wx:for="{{personalData}}" wx:key="idxpersonal">
+            <view class="item-detail" wx:if="{{item.type==1001}}">
+                <text>瞬间页</text>
+                <view class="item-detail-typefrom" wx:if="{{item.type_from}}">{{item.count}}</view>
+                <view wx:else>{{item.count}}</view>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==1002}}">
+                <text>瞬间页-偷看我</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==1003}}">
+                <text>瞬间页-我的关注</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==1004}}">
+                <text>瞬间页-被关注</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==1005}}">
+                <text>瞬间页-瞬间浏览记录</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==1006}}">
+                <text>瞬间页-设置</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==1007}}">
+                <text>好友页</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==1008}}">
+                <text>关注页</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==2001}}">
+                <text>我的独白</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==2002}}">
+                <text>我的独白-偷看我{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==3001}}">
+                <text>朋友眼中的我</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==3002}}">
+                <text>朋友眼中的我-偷看我</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==3003}}">
+                <text>朋友眼中的我-扫码我</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==3004}}">
+                <text>朋友眼中的我-填写</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==4001}}">
+                <text>消息-个人</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==4002}}">
+                <text>消息-系统</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="manu-personal">
+        <text>公共页面浏览记录</text>
+        <view class="item-p" wx:for="{{pageData}}" wx:key="idxpage">
+            <view class="item-detail" wx:if="{{item.type==5001}}">
+                <text>广场</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==5002}}">
+                <text>发布</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==5003}}">
+                <text>活动广场</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==5004}}">
+                <text>好友默契发布</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==5005}}">
+                <text>坦白局发布</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==6001}}">
+                <text>话题-最新</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==6002}}">
+                <text>话题-热门浏览</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==6003}}">
+                <text>话题-热门评论</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==6004}}">
+                <text>话题-热门点赞</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==7001}}">
+                <text>位置-附近</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==7002}}">
+                <text>位置-最新</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==8001}}">
+                <text>他人页-瞬间</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==8002}}">
+                <text>他人页-我的独白</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==8003}}">
+                <text>他人页-朋友眼中的我</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==8004}}">
+                <text>他人页-邀请</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==9001}}">
+                <text>好友默契-扫码</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==9002}}">
+                <text>坦白局-详情</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+            <view class="item-detail" wx:if="{{item.type==9003}}">
+                <text>坦白局-扫码</text>
+                <text>{{item.count}}</text>
+                <text>{{item.latest_time}}</text>
+            </view>
+        </view>
+    </view>
+    
+</view>

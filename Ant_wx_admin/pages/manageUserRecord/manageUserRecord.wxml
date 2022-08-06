@@ -1,0 +1,46 @@
+<!--pages/manageUserRecord/manageUserRecord.wxml-->
+<navBar title="用户记录" background='#60d1cf' back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view class="manu">
+    <view class="item-1">
+        <input wx:if="{{selectedMode==0}}" class="item-1-input" value="{{modelSelected.day}}" bindinput="onClickInput" placeholder="前几天"></input>
+        <input wx:if="{{selectedMode==1}}" class="item-1-input" value="{{modelSelected.ndays}}" bindinput="onClickInput" placeholder="前几天总和"></input>
+        <view class="item-1-1">
+            <view> 
+                <radio-group bindchange="onClickChooseModel">
+                    <radio value="{{0}}">前几天</radio>
+                    <radio value="{{1}}">前几天总和</radio>
+                </radio-group>
+            </view>
+            <view></view>
+            <view class="item-1-submit" bindtap="onClickUpdateday">提交</view>
+        </view>       
+    </view>
+    <view class="item-2" wx:if="{{selectedMode==0}}">
+        <text wx:if="{{modelSelected.day}}">前{{modelSelected.day}}天 登陆用户列表：</text>
+        <text wx:else>当天 登陆用户列表：</text>
+        <view wx:for="{{daylist}}" wx:key="idxpre">
+            <navigator url="/pages/managePersonalandPageData/managePersonalandPageData?user_id={{item.id}}">
+            <view class="item-2-up">
+            <view class="item-2-name">{{item.nickName}}</view>
+            <view class="item-2-name-right">r:{{item.create_date}}</view>
+            <view class="item-2-name-right">{{item.last_login}}</view>
+            </view>
+            <text class="item-2-text" user-select="{{true}}">{{item.openID}}</text>
+            </navigator>
+        </view>
+    </view>
+    <view class="item-2" wx:if="{{selectedMode==1}}">
+        <text wx:if="{{modelSelected.ndays}}">前{{modelSelected.ndays}}天总和 登陆用户列表：</text>
+        <text wx:else>当天总和 登陆用户列表：</text>
+        <view wx:for="{{ndayslist}}" wx:key="idxpre">
+            <navigator url="/pages/managePersonalandPageData/managePersonalandPageData?user_id={{item.id}}">
+            <view class="item-2-up">
+            <view class="item-2-name">{{item.nickName}}</view>
+            <view class="item-2-name-right">r:{{item.create_date}}</view>
+            <view class="item-2-name-right">{{item.last_login}}</view>
+            </view>
+            <text class="item-2-text" user-select="{{true}}">{{item.openID}}</text>
+            </navigator>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,14 @@
+<!--pages/changeGender/changeGender.wxml-->
+<navBar title="性别选择" background='#60d1cf'back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view class="manu">
+    <view class="item-1">
+        <radio-group class="item-1-1" bindchange="onClickChooseGender">
+            <radio value="0">女</radio>
+            <radio value="1">男</radio>
+        </radio-group>
+    </view>
+    <view class="item-3">
+        <button bindtap="onClickSubmit">确认</button>
+        <button bindtap="onClickCancel">取消</button>
+    </view>
+</view>

@@ -1,0 +1,16 @@
+/* pages/previewImage/previewImage.wxss */
+.manu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+.item-1{
+    width: 750rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+image{
+    width: 750rpx;
+}

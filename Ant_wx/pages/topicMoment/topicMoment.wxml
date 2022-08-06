@@ -1,0 +1,360 @@
+<!--pages/topicMoment/topicMoment.wxml-->
+<navBar title="话题" background='#60d1cf' placeHolder="{{true}}" placecolor="#000000" placebackground="#60d1cf" placehight='350' back="{{true}}" home="{{true}}" bindback="handlerGobackClick" bindhome="handlerGohomeClick">
+    <view class='placeholder' slot="placeHolder">
+        <view class="place-between">
+            <view class="place-name">#{{topicDetail.title}}</view>
+            <view bindtap="onClickFocusTopic" data-topic_id="{{topicDetail.id}}">
+                <text wx:if="{{topicDetail.is_focused}}">已关注</text>
+                <text wx:else>关注</text>
+            </view>
+        </view>
+        <view class="place-separate">
+            <view>{{topicDetail.viewer_count}}次浏览</view>
+            <view>{{topicDetail.cited_count}}次引用</view>
+            <view>{{topicDetail.focus_count}}次关注</view>
+        </view>
+        <view class="place-left">
+            <view class="item-classify-2" wx:if="{{classify_type==0}}">最新</view>
+            <view class="item-classify-1" bindtap="onClickClassify" data-value="{{0}}" wx:else>最新</view>
+            <view class="item-classify-2" wx:if="{{classify_type==1}}">热门浏览</view>
+            <view class="item-classify-1" bindtap="onClickClassify" data-value="{{1}}" wx:else>热门浏览</view>
+            <view class="item-classify-2" wx:if="{{classify_type==2}}">热门评论</view>
+            <view class="item-classify-1" bindtap="onClickClassify" data-value="{{2}}" wx:else>热门评论</view>
+            <view class="item-classify-2" wx:if="{{classify_type==3}}">热门点赞</view>
+            <view class="item-classify-1" bindtap="onClickClassify" data-value="{{3}}" wx:else>热门点赞</view>
+        </view>
+    </view>
+</navBar>
+<view class="manu" wx:if="{{!topicDetail}}">
+    <view class="sub-manu">话题探索中...</view>
+</view>
+<view class="manu" wx:else>
+    <view class="manu-down" wx:if="{{classify_type==0}}">
+        <view class="manu-left"></view>
+        <view class="container" wx:for="{{momentList_time}}" wx:key="moment">
+            <block wx:if="{{item.user.id}}">
+                <navigator class="item-1" url="/pages/otherDetails/otherDetails?user_id={{item.user.id}}">
+                    <image src="{{item.user.avatarUrl}}"></image>
+                    <view class="item-1-1">
+                        <view class="item-1-1-1">
+                            <text class="item-1-status" wx:if="{{item.if_status==1}}">{{item.user.if_status_name}}</text>
+                            <text>{{item.user.nickName}}</text>
+                        </view>
+                        <view class="item-1-1-2">
+                            {{item.create_date}}
+                        </view>
+                    </view>
+                </navigator>
+            </block>
+            <block wx:else>
+                <view class="item-1">
+                    <image src="{{item.user.avatarUrl}}"></image>
+                    <view class="item-1-1">
+                        <view class="item-1-1-1">
+                            <text class="item-1-status" wx:if="{{item.if_status==1}}">{{item.user.if_status_name}}</text>
+                            <text>{{item.user.nickName}}</text>
+                        </view>
+                        <view class="item-1-1-2">
+                            {{item.create_date}}
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <view class="item-2" wx:if="{{item.imageList.length}}">
+                <view class="item-2-im2" wx:if="{{item.imageList.length}}">
+                    <navigator class="item-2-im2-nav" url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+                        <image wx:for="{{item.imageList}}" wx:key="index" src="{{item.path}}" mode="aspectFill"></image>
+                    </navigator>
+                </view>
+            </view>
+            <view class="item-3">
+                <navigator url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+                    <text>{{item.content}}</text>
+                </navigator>
+            </view>
+            <view class="item-4" wx:if="{{item.topic.length}}">
+                <view wx:for="{{item.topic}}" wx:key="idxtopic">
+                    <navigator url="/pages/topicMoment/topicMoment?topic_id={{item.id}}">
+                        #{{item.title}}
+                    </navigator>
+                </view>
+            </view>
+            <view class="item-5" wx:if="{{item.address}}">
+                <view>
+                    <navigator url="/pages/addressMoment/addressMoment?address_id={{item.address.id}}">
+                    <image class="setting-img-content" src="/static/default/icons8-location-48.png"></image>
+                    {{item.address.name}}
+                    </navigator>
+                </view>
+            </view>
+            <view class="item-6">
+                <view class="item-6-left">
+                    <text> </text>
+                </view>
+                <view class="item-6-right">
+                    <view wx:if="{{item.is_favor}}" data-mid="{{item.id}}" data-mfavor="{{item.favor_count}}" data-index="{{index}}" bindtap="onClickLikeMoment_0">
+                        <image class="setting-img-pressed" src="/static/default/icons8-comment-like-48.png"></image>
+                        {{item.favor_count}}
+                    </view>
+                    <view wx:else data-mid="{{item.id}}" data-mfavor="{{item.favor_count}}" data-index="{{index}}" bindtap="onClickLikeMoment_0">
+                        <image class="setting-img" src="/static/default/icons8-comment-like-48.png"></image>
+                        {{item.favor_count}}
+                    </view>
+                    <view>
+                        <navigator class="item-2-im2-nav" url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+                            <image class="setting-img" src="/static/default/icons8-comments-48.png"></image>
+                            {{item.comment_count}}
+                        </navigator>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="manu-down" wx:if="{{classify_type==1}}">
+        <view class="manu-left"></view>
+        <view class="container" wx:for="{{momentList_hotview}}" wx:key="moment">
+            <block wx:if="{{item.user.id}}">
+                <navigator class="item-1" url="/pages/otherDetails/otherDetails?user_id={{item.user.id}}">
+                    <image src="{{item.user.avatarUrl}}"></image>
+                    <view class="item-1-1">
+                        <view class="item-1-1-1">
+                            <text class="item-1-status" wx:if="{{item.if_status==1}}">{{item.user.if_status_name}}</text>
+                            <text>{{item.user.nickName}}</text>
+                        </view>
+                        <view class="item-1-1-2">
+                            {{item.create_date}}
+                        </view>
+                    </view>
+                </navigator>
+            </block>
+            <block wx:else>
+                <view class="item-1">
+                    <image src="{{item.user.avatarUrl}}"></image>
+                    <view class="item-1-1">
+                        <view class="item-1-1-1">
+                            <text class="item-1-status" wx:if="{{item.if_status==1}}">{{item.user.if_status_name}}</text>
+                            <text>{{item.user.nickName}}</text>
+                        </view>
+                        <view class="item-1-1-2">
+                            {{item.create_date}}
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <view class="item-2" wx:if="{{item.imageList.length}}">
+                <view class="item-2-im2" wx:if="{{item.imageList.length}}">
+                    <navigator class="item-2-im2-nav" url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+                        <image wx:for="{{item.imageList}}" wx:key="index" src="{{item.path}}" mode="aspectFill"></image>
+                    </navigator>
+                </view>
+            </view>
+            <view class="item-3">
+                <navigator url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+                    <text>{{item.content}}</text>
+                </navigator>
+            </view>
+            <view class="item-4" wx:if="{{item.topic.length}}">
+                <view wx:for="{{item.topic}}" wx:key="idxtopic">
+                    <navigator url="/pages/topicMoment/topicMoment?topic_id={{item.id}}">
+                        #{{item.title}}
+                    </navigator>
+                </view>
+            </view>
+            <view class="item-5" wx:if="{{item.address}}">
+                <view>
+                    <navigator url="/pages/addressMoment/addressMoment?address_id={{item.address.id}}">
+                    <image class="setting-img-content" src="/static/default/icons8-location-48.png"></image>
+                    {{item.address.name}}
+                    </navigator>
+                </view>
+            </view>
+            <view class="item-6">
+                <view class="item-6-left">
+                    <text> </text>
+                </view>
+                <view class="item-6-right">
+                    <view wx:if="{{item.is_favor}}" data-mid="{{item.id}}" data-mfavor="{{item.favor_count}}" data-index="{{index}}" bindtap="onClickLikeMoment_1">
+                        <image class="setting-img-pressed" src="/static/default/icons8-comment-like-48.png"></image>
+                        {{item.favor_count}}
+                    </view>
+                    <view wx:else data-mid="{{item.id}}" data-mfavor="{{item.favor_count}}" data-index="{{index}}" bindtap="onClickLikeMoment_1">
+                        <image class="setting-img" src="/static/default/icons8-comment-like-48.png"></image>
+                        {{item.favor_count}}
+                    </view>
+                    <view>
+                        <navigator class="item-2-im2-nav" url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+                            <image class="setting-img" src="/static/default/icons8-comments-48.png"></image>
+                            {{item.comment_count}}
+                        </navigator>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="manu-down" wx:if="{{classify_type==2}}">
+        <view class="manu-left"></view>
+        <view class="container" wx:for="{{momentList_hotcomment}}" wx:key="moment">
+            <block wx:if="{{item.user.id}}">
+                <navigator class="item-1" url="/pages/otherDetails/otherDetails?user_id={{item.user.id}}">
+                    <image src="{{item.user.avatarUrl}}"></image>
+                    <view class="item-1-1">
+                        <view class="item-1-1-1">
+                            <text class="item-1-status" wx:if="{{item.if_status==1}}">{{item.user.if_status_name}}</text>
+                            <text>{{item.user.nickName}}</text>
+                        </view>
+                        <view class="item-1-1-2">
+                            {{item.create_date}}
+                        </view>
+                    </view>
+                </navigator>
+            </block>
+            <block wx:else>
+                <view class="item-1">
+                    <image src="{{item.user.avatarUrl}}"></image>
+                    <view class="item-1-1">
+                        <view class="item-1-1-1">
+                            <text class="item-1-status" wx:if="{{item.if_status==1}}">{{item.user.if_status_name}}</text>
+                            <text>{{item.user.nickName}}</text>
+                        </view>
+                        <view class="item-1-1-2">
+                            {{item.create_date}}
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <view class="item-2" wx:if="{{item.imageList.length}}">
+                <view class="item-2-im2" wx:if="{{item.imageList.length}}">
+                    <navigator class="item-2-im2-nav" url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+                        <image wx:for="{{item.imageList}}" wx:key="index" src="{{item.path}}" mode="aspectFill"></image>
+                    </navigator>
+                </view>
+            </view>
+            <view class="item-3">
+                <navigator url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+                    <text>{{item.content}}</text>
+                </navigator>
+            </view>
+            <view class="item-4" wx:if="{{item.topic.length}}">
+                <view wx:for="{{item.topic}}" wx:key="idxtopic">
+                    <navigator url="/pages/topicMoment/topicMoment?topic_id={{item.id}}">
+                        #{{item.title}}
+                    </navigator>
+                </view>
+            </view>
+            <view class="item-5" wx:if="{{item.address}}">
+                <view>
+                    <navigator url="/pages/addressMoment/addressMoment?address_id={{item.address.id}}">
+                    <image class="setting-img-content" src="/static/default/icons8-location-48.png"></image>
+                    {{item.address.name}}
+                    </navigator>
+                </view>
+            </view>
+            <view class="item-6">
+                <view class="item-6-left">
+                    <text> </text>
+                </view>
+                <view class="item-6-right">
+                    <view wx:if="{{item.is_favor}}" data-mid="{{item.id}}" data-mfavor="{{item.favor_count}}" data-index="{{index}}" bindtap="onClickLikeMoment_2">
+                        <image class="setting-img-pressed" src="/static/default/icons8-comment-like-48.png"></image>
+                        {{item.favor_count}}
+                    </view>
+                    <view wx:else data-mid="{{item.id}}" data-mfavor="{{item.favor_count}}" data-index="{{index}}" bindtap="onClickLikeMoment_2">
+                        <image class="setting-img" src="/static/default/icons8-comment-like-48.png"></image>
+                        {{item.favor_count}}
+                    </view>
+                    <view>
+                        <navigator class="item-2-im2-nav" url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+                            <image class="setting-img" src="/static/default/icons8-comments-48.png"></image>
+                            {{item.comment_count}}
+                        </navigator>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="manu-down" wx:if="{{classify_type==3}}">
+        <view class="manu-left"></view>
+        <view class="container" wx:for="{{momentList_hotfavor}}" wx:key="moment">
+            <block wx:if="{{item.user.id}}">
+                <navigator class="item-1" url="/pages/otherDetails/otherDetails?user_id={{item.user.id}}">
+                    <image src="{{item.user.avatarUrl}}"></image>
+                    <view class="item-1-1">
+                        <view class="item-1-1-1">
+                            <text class="item-1-status" wx:if="{{item.if_status==1}}">{{item.user.if_status_name}}</text>
+                            <text>{{item.user.nickName}}</text>
+                        </view>
+                        <view class="item-1-1-2">
+                            {{item.create_date}}
+                        </view>
+                    </view>
+                </navigator>
+            </block>
+            <block wx:else>
+                <view class="item-1">
+                    <image src="{{item.user.avatarUrl}}"></image>
+                    <view class="item-1-1">
+                        <view class="item-1-1-1">
+                            <text class="item-1-status" wx:if="{{item.if_status==1}}">{{item.user.if_status_name}}</text>
+                            <text>{{item.user.nickName}}</text>
+                        </view>
+                        <view class="item-1-1-2">
+                            {{item.create_date}}
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <view class="item-2" wx:if="{{item.imageList.length}}">
+                <view class="item-2-im2" wx:if="{{item.imageList.length}}">
+                    <navigator class="item-2-im2-nav" url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+                        <image wx:for="{{item.imageList}}" wx:key="index" src="{{item.path}}" mode="aspectFill"></image>
+                    </navigator>
+                </view>
+            </view>
+            <view class="item-3">
+                <navigator url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+                    <text>{{item.content}}</text>
+                </navigator>
+            </view>
+            <view class="item-4" wx:if="{{item.topic.length}}">
+                <view wx:for="{{item.topic}}" wx:key="idxtopic">
+                    <navigator url="/pages/topicMoment/topicMoment?topic_id={{item.id}}">
+                        #{{item.title}}
+                    </navigator>
+                </view>
+            </view>
+            <view class="item-5" wx:if="{{item.address}}">
+                <view>
+                    <navigator url="/pages/addressMoment/addressMoment?address_id={{item.address.id}}">
+                    <image class="setting-img-content" src="/static/default/icons8-location-48.png"></image>
+                    {{item.address.name}}
+                    </navigator>
+                </view>
+            </view>
+            <view class="item-6">
+                <view class="item-6-left">
+                    <text> </text>
+                </view>
+                <view class="item-6-right">
+                    <view wx:if="{{item.is_favor}}" data-mid="{{item.id}}" data-mfavor="{{item.favor_count}}" data-index="{{index}}" bindtap="onClickLikeMoment_3">
+                        <image class="setting-img-pressed" src="/static/default/icons8-comment-like-48.png"></image>
+                        {{item.favor_count}}
+                    </view>
+                    <view wx:else data-mid="{{item.id}}" data-mfavor="{{item.favor_count}}" data-index="{{index}}" bindtap="onClickLikeMoment_3">
+                        <image class="setting-img" src="/static/default/icons8-comment-like-48.png"></image>
+                        {{item.favor_count}}
+                    </view>
+                    <view>
+                        <navigator class="item-2-im2-nav" url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+                            <image class="setting-img" src="/static/default/icons8-comments-48.png"></image>
+                            {{item.comment_count}}
+                        </navigator>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!--底部-->
+    <view class="bottom-window">
+        <view bindtap="onClickSwitch">主页</view>
+    </view>
+</view>

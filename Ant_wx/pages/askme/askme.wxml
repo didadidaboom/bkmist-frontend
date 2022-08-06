@@ -1,0 +1,41 @@
+<!--pages/askme/askme.wxml-->
+<navBar title="坦白局提问" background='#60d1cf' home="{{true}}" bindhome="handlerGohomeClick"></navBar>
+<view class="manu">
+    <view class="manu-up">
+        <view class="item-title" bindtap="onClickAskStart">
+            我发起了“坦白局”活动，赶紧前往"条件匿名/公开"对我提问吧（Ask me anything）
+            <text>
+                <text class="item-title-txt">点击我</text>进行提问哟
+            </text>
+        </view>
+        <view wx:if="{{show_ask}}">
+            <radio-group class="item-status" bindchange="onClickAskStatus">
+                1.状态选择:
+                <radio value="0">公开</radio>
+                <radio value="1">条件匿名</radio>
+            </radio-group>
+            2.提问填写：
+            <textarea class="item-content" bindinput="onClickContent" value="{{ask_content}}" placeholder="在此填写你想问的问题哟" auto-focus="True" maxlength="255">
+            </textarea>
+            <button bindtap="onClickAskSubmit">提交</button>
+            <view class="item-title-more">
+                <view class="item-title-more-txt" bindtap="onClickInitiateAskMe"> >>我也想发布“坦白局”活动，点击</view>
+            </view>
+            <view class="item-title-more">
+                <view class="item-title-more-txt" bindtap="onClickExploreCommunity"> >>探索社区，点击</view>
+            </view>
+        </view>
+        <view wx:if="{{show_ask_fail}}">
+            <view class="item-title-more">不好意思，分享已被用户移除，已失效</view>
+            <view class="item-title-more">
+                <view class="item-title-more-txt" bindtap="onClickInitiateAskMe"> >>我也想发布“坦白局”活动，点击</view>
+            </view>
+            <view class="item-title-more">
+                <view class="item-title-more-txt" bindtap="onClickExploreCommunity"> >>探索社区，点击</view>
+            </view>
+        </view>
+    </view>
+    <view class="manu-down" wx:if="{{show_ask}}">
+        <button class="intro" bindtap="onClickAskMeRecord">查看回答记录</button>
+    </view>
+</view>

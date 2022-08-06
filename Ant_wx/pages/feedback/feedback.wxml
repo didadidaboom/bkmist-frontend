@@ -1,0 +1,16 @@
+<!--pages/feedback/feedback.wxml-->
+<navBar title="问题反馈" background='#60d1cf' back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view class="manu">
+    <view class="item-1">
+        <text class="board-background">产品还在测试中，如果发现bug,请帮忙提交反馈哟！提前感谢</text>
+    </view>
+    <view class="item-2">
+            <text class="title">反馈入口 (请截图保存前往扫码)</text>
+            <image src="/static/feedback/feedback.jpg"></image>
+    </view>
+    <view class="item-2">
+        <text class="title">联系</text>
+        <text class="subtile">添加微信：choooogng</text>
+        <text class="subtile">申请备注：反馈</text>
+    </view>
+</view>

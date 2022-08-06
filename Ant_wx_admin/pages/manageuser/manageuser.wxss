@@ -1,0 +1,64 @@
+/* pages/manageuser/manageuser.wxss */
+.manu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 32rpx;
+    word-break: break-all;
+    word-wrap: break-word;
+    font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    padding-bottom: 300rpx;
+}
+.item-1{
+    padding-top: 5rpx;
+    padding-bottom: 5rpx;
+    width: 700rpx;
+    display: flex;
+    flex-direction: column;
+}
+.item-1-1{
+    padding-top: 10rpx;
+    padding-bottom: 10rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.item-1-submit{
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+}
+.item-1-input{
+    padding: 10rpx;
+    background-color: #dddddd;
+}
+
+.item-2{
+    padding-top: 20rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 700rpx;
+}
+.item-2-up{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.item-2-name{
+    border: 1rpx solid #60d1cf;
+    border-radius: 5%;
+}
+.item-2-name-right{
+    color: #60d1cf;
+}
+.item-2-del{
+    color: #60d1cf;
+    padding-left: 5rpx;
+    padding-right: 5rpx;
+}
+.item-2-text{
+    width: 100rpx;
+    /* overflow:hidden; */
+    /* white-space:nowrap; */
+    /* text-overflow:ellipsis; */
+}

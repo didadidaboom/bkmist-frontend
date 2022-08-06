@@ -1,0 +1,174 @@
+{
+    "setting": {},
+    "condition": {
+        "plugin": {
+            "list": []
+        },
+        "game": {
+            "list": []
+        },
+        "gamePlugin": {
+            "list": []
+        },
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "pages/login/login",
+                    "pathName": "pages/login/login",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/profile/profile",
+                    "pathName": "pages/profile/profile",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/auction/auction",
+                    "pathName": "pages/auction/auction",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/auction-details/auction-details",
+                    "pathName": "pages/auction-details/auction-details",
+                    "query": "url0=%2Fstatic%2Fshop%2Fdog.jpg&url1=%2Fstatic%2Fshop%2Fdogback.jpg&url2=%2Fstatic%2Fshop%2Fcat.jpg&url3=%2Fstatic%2Fshop%2Fbear1.jpg&url4=%2Fstatic%2Fshop%2Fbear2.jpg&url5=%2Fstatic%2Fshop%2Fbear3.jpg&title1=%E7%AC%AC%E4%B8%80%E5%9C%BA%20%E8%B4%B5%E5%92%8C%E7%A5%A5%E8%8C%B6%E9%81%93%E4%B8%93%E5%9C%BA&title2l=%E5%B7%B2%E5%94%AE%E5%8D%96&title2r=1390%E6%AC%A1%E5%9B%B4%E8%A7%82",
+                    "scene": null
+                },
+                {
+                    "name": "pages/auth/auth",
+                    "pathName": "pages/auth/auth",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/index/index",
+                    "pathName": "pages/index/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/autho/autho",
+                    "pathName": "pages/autho/autho",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/publish/publish",
+                    "pathName": "pages/publish/publish",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/test/test",
+                    "pathName": "pages/test/test",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/topicList/topicList",
+                    "pathName": "pages/topicList/topicList",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/momentDetails/momentDetails",
+                    "pathName": "pages/momentDetails/momentDetails",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/momentDetails/momentDetails",
+                    "pathName": "pages/momentDetails/momentDetails",
+                    "query": "moment_id=64",
+                    "scene": null
+                },
+                {
+                    "name": "components/customTabbar",
+                    "pathName": "components/customTabbar",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "components/customTabbar",
+                    "pathName": "components/customTabbar",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "components/customTabbar",
+                    "pathName": "components/customTabbar/customTabbar",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/createtopic/createtopic",
+                    "pathName": "pages/createtopic/createtopic",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/personalDetails/personalDetails",
+                    "pathName": "pages/personalDetails/personalDetails",
+                    "query": "user_id=3",
+                    "scene": null
+                },
+                {
+                    "name": "pages/otherDetails/otherDetails",
+                    "pathName": "pages/otherDetails/otherDetails",
+                    "query": "user_id=15",
+                    "scene": null
+                },
+                {
+                    "name": "pages/changeName/changeName",
+                    "pathName": "pages/changeName/changeName",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/settings/settings",
+                    "pathName": "pages/settings/settings",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/tacitTest/tacitTest",
+                    "pathName": "pages/tacitTest/tacitTest",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/tacitTest/tacitTest",
+                    "pathName": "pages/tacitTest/tacitTest",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/replyTacit/replyTacit",
+                    "pathName": "pages/replyTacit/replyTacit",
+                    "query": "scene=131",
+                    "scene": 1012
+                },
+                {
+                    "name": "pages/shareTacit/shareTacit",
+                    "pathName": "pages/shareTacit/shareTacit",
+                    "query": "scene=5&flag=1",
+                    "scene": null
+                },
+                {
+                    "name": "pages/completePublish/completePublish",
+                    "pathName": "pages/completePublish/completePublish",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/contribution/contribution",
+                    "query": "",
+                    "scene": null
+                }
+            ]
+        }
+    }
+}

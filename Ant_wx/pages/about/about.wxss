@@ -1,0 +1,48 @@
+/* pages/about/about.wxss */
+.manu{
+    font-size: 32rpx;
+    word-break: break-all;
+    word-wrap: break-word;
+    font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    padding-top: 20rpx;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+    padding-bottom: 20rpx;
+}
+.item-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20rpx;
+}
+.board-background{
+    color: #60d1cf;
+}
+.item-2{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20rpx;
+    border: 1rpx solid #60d1cf;
+    border-radius: 5%;
+}
+.item-2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.item-2 image{
+    width: 500rpx;
+    height: 500rpx;
+}
+.title{
+    font-size: larger;
+    color: #60d1cf;
+}
+.subtile{
+    padding-left: 10rpx;
+}
+.content{
+    padding-left: 20rpx;
+}

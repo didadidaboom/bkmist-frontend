@@ -1,0 +1,124 @@
+/* pages/replyTacit/replyTacit.wxss */
+.manu{
+    font-size: 32rpx;
+    word-break: break-all;
+    word-wrap: break-word;
+    font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    padding: 20rpx;
+}
+.item-1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: 1rpx solid#60d1cf;
+    border-bottom: none;
+    padding: 20rpx;
+    background-color: #60d1cf;
+}
+.item-1 image{
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 50%;
+}
+.item-2{
+    height: 400rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 1rpx solid #60d1cf;    
+    padding: 20rpx;
+    background-color: #60d1cf;
+}
+.title{
+    font-size: larger;
+    border-bottom: 1rpx solid #dddddd;
+}
+.content-style{
+    width: 100%;
+    padding-top: 5rpx;
+    padding-bottom: 5rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.content{
+    width: 100%;
+    background-color: white;
+}
+.content-selected{
+    width: 100%;
+}
+.item-3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: 1rpx solid #60d1cf;
+    border-top: none;
+    padding: 20rpx;
+    background-color: #60d1cf;
+}
+.notice-setting{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.notice{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    opacity: 0.5;
+}
+.previoupage{
+    opacity: 0.2;
+}
+/*完成*/
+.item-1-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100rpx;
+    
+}
+.item-1-1 image{
+    width: 150rpx;
+    height: 150rpx;
+    border-radius: 50%;
+}
+.item-1-2{
+    display: flex;
+    flex-direction: column;
+    padding: 100rpx;
+}
+.item-bonus{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}   
+.item-bonus-choice{
+    display: flex;
+    flex-direction: row;
+}
+.item-bonus-choice-1{
+    padding-right: 100rpx;
+    
+}
+.item-bonus-choice-2{
+    border-bottom: 1rpx solid #dddddd;
+}
+/*完成*/
+radio{
+    transform: scale(0.8);
+}
+
+.item-1-3{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.item-1-3-1{
+    border: 1rpx solid #60d1cf;
+    padding: 10rpx;
+    border-radius: 10%;
+}
+

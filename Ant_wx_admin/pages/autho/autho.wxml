@@ -1,0 +1,14 @@
+<!--pages/autho/autho.wxml-->
+<view class="manu">
+    <view>手机号:</view>
+    <input value="{{phone}}" bindinput="onClickInputPhone" placeholder="请输入手机号" maxlength="11"></input>
+    <view>
+        <view>验证码:</view>
+    </view>
+    <view class="item-2">
+        <input value="{{code}}" bindinput="onClickInputCode" placeholder="请输入验" maxlength="4"></input>
+        <button bindtap="onClickGetCode">获取验证码</button>
+    </view>
+    <button bindtap="onClickGetProfile">授权</button>
+    <button class="itemLogin" bindtap="onClickLogin">登陆</button>
+ </view>

@@ -1,0 +1,57 @@
+/* pages/createAskMe/createAskMe.wxss */
+.manu{
+    font-size: 32rpx;
+    word-break: break-all;
+    word-wrap: break-word;
+    font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    background-color: #ffffff;
+}
+.manu-up{
+    padding: 50rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-bottom: 1rpx solid #60d1cf;
+}
+.item-up-1{
+    font-weight: bolder;
+}
+.item-up-2{
+    padding: 10rpx;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1rpx solid #60d1cf;
+}
+.manu-down{
+    padding: 50rpx;
+}
+.manu-down-1{
+    font-weight: bolder;
+}
+.item-procedure{
+    padding: 20rpx;
+}
+button{
+    width: fit-content;
+    height: fit-content;
+    font-size: small;
+}
+.item-up-img{
+    width: 80rpx;
+}
+.item-up-2 image{
+    width: 80rpx;
+    height: 80rpx;
+}
+.item-up-3{
+    padding-top: 20rpx;
+    font-weight: bolder;
+}
+.item-up-4{
+    padding: 10rpx;
+    width: 450rpx
+}
+.item-up-4 image{
+    width: 450rpx;
+    height: 450rpx;
+}

@@ -1,0 +1,17 @@
+/* pages/autho/autho.wxss */
+.item-2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.item-2 button{
+    width: fit-content;
+    font-size: xx-small;
+    color: #60d1cf;
+}
+input{
+    border: 1rpx solid #dddddd;
+}
+.manu button {
+    width: fit-content;
+}

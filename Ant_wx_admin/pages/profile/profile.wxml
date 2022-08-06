@@ -1,0 +1,294 @@
+<!--pages/profile/profile.wxml-->
+<navBar title='个人页' background='#60d1cf'></navBar>
+<view class="manu">
+    <!--上半部分-->
+    <view class="manu-up">
+        <view class="item-1">
+            <navigator url="/pages/settings/settings" wx:if="{{token}}">设置</navigator>
+        </view>
+        <view class="item-2">
+            <view class="item-2-1">
+                <navigator url="/pages/changeGender/changeGender">
+                    <image wx:if="{{token}}" src="{{avatarUrl}}"></image>
+                </navigator>
+                <image hidden="{{token}}" src="/static/default/pre-profile.jpg"></image>
+            </view>
+            <view wx:if="{{token}}">
+                <navigator url="/pages/changeName/changeName">{{nickName}}</navigator>
+            </view>
+            <view wx:else>
+                <navigator url="/pages/login/login">登陆</navigator>
+            </view>
+            <view wx:if="{{token}}">
+                <text>{{personalInfo.create_date}}天</text>
+            </view>
+        </view>
+        <view class="item-classify">
+            <view class="item-classify-2" wx:if="{{classify_type==0}}">瞬间</view>
+            <view class="item-classify-1" bindtap="onClickClassify" data-value="{{0}}" wx:else>瞬间</view>
+            <view class="item-classify-2" wx:if="{{classify_type==1}}">我的独白</view>
+            <view class="item-classify-1" bindtap="onClickClassify" data-value="{{1}}" wx:else>我的独白</view>
+            <view class="item-classify-2" wx:if="{{classify_type==2}}">朋友眼中的我</view>
+            <view class="item-classify-1" bindtap="onClickClassify" data-value="{{2}}" wx:else>朋友眼中的我</view>
+        </view>
+    </view>
+    <!--下半部分 -瞬间-->
+    <view class="manu-down" wx:if="{{classify_type==0}}">
+        <view class="item-1-down" wx:if="{{token}}">
+            <navigator url="/pages/userFocusList/userFocusList">
+                <view>关注{{personalInfo.focus_count}}</view>
+            </navigator>
+            <navigator url="/pages/focusedList/focusedList">
+                <view>被关注{{personalInfo.focused_count}}
+                    <block wx:if="{{personalInfo.new_viewers}}">
+                    <text class="red" wx:if="{{personalInfo.new_viewers.focused_count>0}}">+{{personalInfo.new_viewers.focused_count}}</text>
+                    </block>
+                </view>
+            </navigator>
+            <navigator url="/pages/profileViewer/profileViewer">
+                <view>偷看我{{personalInfo.viewer_count}}
+                    <block wx:if="{{personalInfo.new_viewers}}">
+                    <text class="red" wx:if="{{personalInfo.new_viewers.viewer_count_page1>0}}">+{{personalInfo.new_viewers.viewer_count_page1}}</text>
+                    </block>
+                </view>
+            </navigator>
+        </view>
+        <view class="item-2-down" wx:if="{{false}}">
+            <text>#新加坡留学</text>
+            <text>#NTU</text>
+        </view>
+        <view wx:if="{{token}}">
+        <view wx:if="{{momentList_flag==2}}">
+        <view class="item-3-down" wx:for="{{momentList}}" wx:key="idxmoment">
+            <view class="time">
+                <text>{{item.create_date}}</text>
+                <!--可见状态-->
+                <text class="if_status" wx:if="{{item.if_status}}">条</text>
+                <view class="setting-font" bindtap="onClickPopupWindow" data-index="{{index}}" data-moment_id="{{item.id}}">
+                    <view wx:if="{{item.moment_status==0}}" >广场可见</view>
+                    <view wx:elif="{{item.moment_status==1}}" > >>主页可见</view>
+                    <view wx:else > >>个人可见</view>
+                    <image class="setting-img" src="/static/default/icons8-menu-vertical-48.png"></image>
+                </view>
+            </view>
+            <navigator url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+            <view wx:if="{{item.imageList.length}}">
+                <view class="loopimage" wx:for="{{item.imageList}}" wx:key="idximage">
+                    <image mode="widthFix" src="{{item.path}}"></image>
+                </view>
+            </view>
+            <text>{{item.content}}</text>
+            </navigator>
+            <view class="topic" wx:if="{{item.topic}}">
+                <view wx:for="{{item.topic}}" wx:key="idxtopic">
+                    <navigator url="/pages/topicMoment/topicMoment?topic_id={{item.id}}">
+                        #{{item.title}}
+                    </navigator>
+                </view>
+            </view>
+            <view class="address" wx:if="{{item.address}}">
+                <navigator url="/pages/addressMoment/addressMoment?address_id={{item.address.id}}">
+                    <image class="setting-img-content" src="/static/default/icons8-location-48.png"></image>
+                    {{item.address.name}}
+                </navigator>
+            </view>
+            <view class="address">
+                <navigator url="/pages/momentDetailViewer/momentDetailViewer?moment_id={{item.id}}">
+                <image class="setting-img-content" src="/static/default/icons8-eye-48.png"></image>
+                被浏览<text class="red" wx:if="{{item.new_momentviewers}}">+{{item.new_momentviewers}}</text>
+                </navigator>
+            </view>
+        </view>
+        </view>
+        <view wx:if="{{momentList_flag==1}}">
+            <view class="reminder">瞬间空白耶，赶紧前往发布第一条瞬间吧</view>
+            <navigator url="/pages/publish/publish">
+            <view class="reminder-bt">
+                <text>点击发布</text>
+            </view>
+            </navigator>
+        </view>
+        <view wx:if="{{momentList_flag==0}}">
+            <view class="reminder">加载中...</view>
+        </view>
+        </view>
+        <view class="bottom-window" wx:if="{{bottom_window}}">
+        <view class="bw-item-1">
+            <radio-group bindchange="onClickChangeStatus">
+                <radio value="0">广场可见</radio>
+                <radio value="1">主页可见</radio>
+                <radio value="2">个人可见</radio>
+            </radio-group>
+            <text bindtap="onClickCancelStatus">取消</text>
+        </view>
+        <view class="bw-item-2">
+            <text bindtap="onClickDelCurrentMoment">删除瞬间</text>
+        </view>
+        </view>
+    </view>
+    <!--下半部分 -我的独白-->
+    <view class="manu-down" wx:if="{{classify_type==1}}">
+        <view class="item-1-down" wx:if="{{token}}">
+            <navigator url="/pages/selfViewer/selfViewer">
+                <view>偷看我独白{{personalInfo.viewer_count_page2}}
+                    <block wx:if="{{personalInfo.new_viewers}}">
+                    <text class="red" wx:if="{{personalInfo.new_viewers.viewer_count_page2>0}}">+{{personalInfo.new_viewers.viewer_count_page2}}</text>
+                    </block>
+                </view>
+            </navigator>
+        </view>
+        <view class="item-1-classify_type1_type" wx:if="{{token}}">
+            <view class="item-1-classify_type1_type-2" wx:if="{{classify_type1_type==0}}">默契测试</view>
+            <view class="item-1-classify_type1_type-1" bindtap="onClickClassifyType1tpye" data-value="{{0}}" wx:else>默契测试</view>
+        </view>
+        <view class="item-2-down">
+            <text>“我的独白”内容只能来源于用户本人</text>
+        </view>
+        <view wx:if="{{token}}">
+        <view wx:if="{{tacitList_flag==2}}">
+        <view class="item-3-down" wx:for="{{tacitList}}" wx:key="idxtacit">
+            <view class="time">
+                <text>{{item.create_date}}</text>
+                <!--可见状态-->
+                <view class="setting-font" bindtap="onClickPopupWindowTacit" data-index="{{index}}" data-tacit_id="{{item.id}}">
+                    <view wx:if="{{item.tacit_status==0}}" >主页可见</view>
+                    <!-- <view wx:elif="{{item.tacit_status==1}}" > >>主页可见</view> -->
+                    <view wx:else > >>个人可见</view>
+                    <image class="setting-img" src="/static/default/icons8-menu-vertical-48.png"></image>
+                </view>
+            </view>
+            <navigator url='/pages/shareTacit/shareTacit?scene={{item.id}}&flag={{item.avatarUrlFlag}}'>
+            <view wx:for="{{item.tacitDataList}}" wx:key="idxtacitdata">
+                <view class="title">{{item.title}}</view>
+                <view class="content" wx:if="{{item.selected_answer==1}}">{{item.answer1}}</view>
+                <view class="content" wx:if="{{item.selected_answer==2}}">{{item.answer2}}</view>
+                <view class="content" wx:if="{{item.selected_answer==3}}">{{item.answer3}}</view>
+                <view class="content" wx:if="{{item.selected_answer==4}}">{{item.answer4}}</view>
+                <view class="content" wx:if="{{item.selected_answer==5}}">{{item.answer5}}</view>
+            </view>
+            </navigator>
+        </view>
+        </view>
+        <view wx:if="{{tacitList_flag==1}}">
+            <view class="reminder">"我的独白"空白耶，赶紧前往参与第一条活动吧</view>
+            <navigator url="/pages/tacitTest/tacitTest">
+            <view class="reminder-bt">
+                <text>点击发布默契测试</text>
+            </view>
+            </navigator>
+        </view>
+        <view wx:if="{{tacitList_flag==0}}">
+            <view class="reminder">加载中...</view>
+        </view>
+        </view>
+        <view class="bottom-window" wx:if="{{bottom_window_tacit}}">
+        <view class="bw-item-1">
+            <radio-group bindchange="onClickChangeStatusTacit">
+                <radio value="0">主页可见</radio>
+                <!-- <radio value="1">主页可见</radio> -->
+                <radio value="2">个人可见</radio>
+            </radio-group>
+            <text bindtap="onClickCancelStatusTacit">取消</text>
+        </view>
+        <view class="bw-item-2">
+            <text bindtap="onClickDelTacit">删除内容</text>
+        </view>
+        <view class="bw-item-3">
+            <text>"朋友眼中的我"相关内容和扫码记录也会被删哟</text>
+        </view>
+        </view>
+    </view>
+    <!--下半部分 -朋友眼中的我-->
+    <view class="manu-down" wx:if="{{classify_type==2}}">
+        <view class="item-1-down" wx:if="{{token}}">
+            <navigator url="/pages/friendScanViewer/friendScanViewer">
+                <view>浏览我活动{{personalInfo.tacit_viewer_count}}
+                    <block wx:if="{{personalInfo.new_viewers}}">
+                    <text class="red" wx:if="{{personalInfo.new_viewers.tacit_viewer_count>0}}">+{{personalInfo.new_viewers.tacit_viewer_count}}</text>
+                    </block>
+                </view>
+            </navigator>
+            <navigator url="/pages/friendSubmitViewer/friendSubmitViewer">
+                <view>参与我活动{{personalInfo.tacit_write_count}}
+                    <block wx:if="{{personalInfo.new_viewers}}">
+                    <text class="red" wx:if="{{personalInfo.new_viewers.tacit_write_count>0}}">+{{personalInfo.new_viewers.tacit_write_count}}</text>
+                    </block>
+                </view>
+            </navigator>
+            <navigator url="/pages/friendViewer/friendViewer">
+                <view>偷看我{{personalInfo.viewer_count_page3}}
+                    <block wx:if="{{personalInfo.new_viewers}}">
+                    <text class="red" wx:if="{{personalInfo.new_viewers.viewer_count_page3>0}}">+{{personalInfo.new_viewers.viewer_count_page3}}</text>
+                    </block>
+                </view>
+            </navigator>
+        </view>
+        <view class="item-1-classify_type2_type" wx:if="{{token}}">
+            <view class="item-1-classify_type2_type-2" wx:if="{{classify_type2_type==0}}">默契测试</view>
+            <view class="item-1-classify_type2_type-1" bindtap="onClickClassifyType2tpye" data-value="{{0}}" wx:else>默契测试</view>
+        </view>
+        <view class="item-2-down">
+            <text>“朋友眼中的我”内容只能来源于微信分享的朋友</text>
+        </view>
+        <view wx:if="{{token}}">
+        <view wx:if="{{tacitReplyList_flag==2}}">
+        <view class="item-3-down" wx:for="{{tacitReplyList}}" wx:for-item="item1" wx:key="idxtacit">
+            <view wx:if="{{item1.replyList.length}}">
+                <view class="time">
+                    <text>{{item1.create_date}}</text>
+                    <!--可见状态-->
+                    <view class="setting-font" bindtap="onClickPopupWindowTacitReply" data-index="{{index}}" data-tacit_id="{{item1.id}}">
+                        <view wx:if="{{item1.tacit_reply_status==0}}" >主页可见</view>
+                        <!-- <view wx:elif="{{item1.tacit_reply_status==1}}" > >>主页可见</view> -->
+                        <view wx:else > >>个人可见</view>
+                        <image class="setting-img" src="/static/default/icons8-menu-vertical-48.png"></image>
+                    </view>
+                </view>
+                <view wx:for="{{item1.tacitDataList}}" wx:key="idxtacitdata" wx:for-item="itemtacit"    wx:for-index="indextacit">
+                    <view class="title">{{itemtacit.title}}</view>
+                    <view class="content-start" wx:for="{{item1.replyList}}" wx:for-item="item2"    wx:key="idxreply">
+                        <view class="content-start-mid">
+                            <navigator wx:if="{{item2.user_id}}" class="content-start-mid-nav" url="/pages/otherDetails/otherDetails?user_id={{item2.user_id}}">
+                                <image src="{{item2.avatarUrl}}"></image>
+                            </navigator>
+                            <image wx:else src="{{item2.avatarUrl}}"></image>
+                            <text class="content-start-status" wx:if="{{item2.if_status}}">{{item2. if_status_name}}</text>
+                            <view class="content" wx:if="{{item2.answer[indextacit].selected_answer==1}}">  {{itemtacit.answer1}}</view>
+                            <view class="content" wx:if="{{item2.answer[indextacit].selected_answer==2}}">  {{itemtacit.answer2}}</view>
+                            <view class="content" wx:if="{{item2.answer[indextacit].selected_answer==3}}">  {{itemtacit.answer3}}</view>
+                            <view class="content" wx:if="{{item2.answer[indextacit].selected_answer==4}}">  {{itemtacit.answer4}}</view>
+                            <view class="content" wx:if="{{item2.answer[indextacit].selected_answer==5}}">  {{itemtacit.answer5}}</view>
+                        </view>
+                        <view>
+                            <view>匹配{{item2.match_count}}%</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        </view>
+        <view wx:if="{{tacitReplyList_flag==1}}">
+            <view class="reminder">"朋友眼中的我"空白耶，赶紧前往先参与第一条活动吧，并分享给朋友填写</view>
+            <navigator url="/pages/tacitTest/tacitTest">
+            <view class="reminder-bt">
+                <text>点击发布默契测试并分享</text>
+            </view>
+            </navigator>
+        </view>
+        <view wx:if="{{tacitReplyList_flag==0}}">
+            <view class="reminder">加载中...</view>
+        </view>
+        </view>
+        <view class="bottom-window" wx:if="{{bottom_window_tacit_reply}}">
+        <view class="bw-item-1">
+            <radio-group bindchange="onClickChangeStatusTacitReply">
+                <radio value="0">主页可见</radio>
+                <!-- <radio value="1">主页可见</radio> -->
+                <radio value="2">个人可见</radio>
+            </radio-group>
+            <text bindtap="onClickCancelStatusTacitReply">取消</text>
+        </view>
+        </view>
+    </view>
+</view>
+<customTabbar selected="{{2}}"></customTabbar>

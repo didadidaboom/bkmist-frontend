@@ -1,0 +1,26 @@
+<!--pages/userFocusList/userFocusList.wxml-->
+<navBar title="我的关注" background='#60d1cf' back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view class="manu">
+    <view class="item-0">自己的关注列表（暂仅支持最近十条）</view>
+    <view wx:if="{{FocusList}}">
+    <view class="item-1" wx:for="{{FocusList}}" wx:for-item="item1" wx:key="idxprofile">
+        <navigator url="/pages/otherDetails/otherDetails?user_id={{item1.user.id}}">
+        <view class="item-1-1">
+            <image src="{{item1.user.avatarUrl}}"></image>
+            <view class="item-1-1-1">
+                <text class="item-1-1-1-1">{{item1.user.nickName}}</text>
+            </view>
+        </view>
+        </navigator>
+        <view class="item-1-1-2">
+            {{item1.create_date}}
+        </view>
+    </view>
+    </view>
+    <view class="item-2" hidden="{{FocusList}}">
+        我欣赏的人获取中
+    </view>
+    <view class="item-3" wx:if="{{FocusList.length==0}}">
+        暂时还没你欣赏的人哟，赶紧去发现有趣的人吧
+    </view>
+</view>

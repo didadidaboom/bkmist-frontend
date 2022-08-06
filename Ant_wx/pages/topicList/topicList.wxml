@@ -1,0 +1,29 @@
+<!--pages/topicList/topicList.wxml-->
+<navBar title="话题" background='#60d1cf' placeHolder="{{true}}" placecolor="#000000" placebackground="#ffffff" placehight='250' back="{{true}}" bindback="handlerGobackClick">
+    <view class='placeholder' slot="placeHolder">
+        <view class="place-between">
+            <input class="topicInput" value="{{topicinput}}" bindinput="onClickInputTopic" placeholder="搜索话题"></input>
+        <text class="item-1-right-1" bindtap="onClickSearchTopic">搜索</text>
+        </view>
+    </view>
+</navBar>
+<view class="manu">
+    <view class="item-1-2">
+        <text>请点击下面话题进行选择</text>
+    </view>
+    <view class="item-2">
+        <block wx:if="{{topics}}">
+        <view class="item-2-topic" wx:for="{{topics}}" wx:key="idx" bindtap="onClickChooseTopic" data-topicitem="{{item}}">
+            <text>{{item.title}}</text>
+            <text>推荐{{index+1}}</text>
+        </view>
+        </block>
+        <block wx:else>
+            <view class="item-2-topic-loading">加载中，请稍后</view>
+        </block>
+    </view>
+    <!--底部-->
+    <view class="bottom-window">
+        <navigator url="/pages/createtopic/createtopic">创建</navigator>
+    </view>
+</view>

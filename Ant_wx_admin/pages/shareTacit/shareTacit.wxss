@@ -1,0 +1,21 @@
+/* pages/shareTacit/shareTacit.wxss */
+.intro {
+  width: 686rpx;
+  height: 88rpx;
+  background: #60d1cf;
+  color: #FFF;
+  border-radius: 16rpx;
+  font-size: 32rpx;
+  text-align: center;
+  margin: 200rpx auto;
+}
+.intro1{
+  width: 686rpx;
+  height: 88rpx;
+  background: #b8d8d7;
+  color: #FFF;
+  border-radius: 16rpx;
+  font-size: 32rpx;
+  text-align: center;
+  margin: 200rpx auto;
+}

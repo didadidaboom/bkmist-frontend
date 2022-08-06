@@ -1,0 +1,8 @@
+<!--pages/about/about.wxml-->
+<navBar title='关于' background='#60d1cf' back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view class="manu">
+    <view class="item-1">
+        <text class="board-background">北岛的诗说：“那时的我们有梦，关于文学，关于爱情，关于穿越世界的旅行。如今的我们深夜饮酒，杯子碰到一起，都是梦破碎的声音。”
+        此产品属于个人自娱自乐，围绕避开“速食主义”的理念兼具功能灵活可成长的概念，多角度的（包括瞬间，我的独白和朋友眼中的我）展现每个人，打造长关系的世界。</text>
+    </view>
+</view>

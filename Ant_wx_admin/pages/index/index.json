@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "customTabbar":"/components/customTabbar/customTabbar"
+  },
+  "navigationBarBackgroundColor": "#60d1cf",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "广场",
+  "backgroundColor": "#ffffff",
+  "backgroundTextStyle": "light"
+}

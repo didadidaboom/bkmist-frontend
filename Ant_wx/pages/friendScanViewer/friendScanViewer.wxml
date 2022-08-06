@@ -1,0 +1,47 @@
+<!--pages/friendScanViewer/friendScanViewer.wxml-->
+<navBar title="我的遇见" background='#60d1cf' back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view class="manu">
+    <view class="item-0">好友扫码分享页“浏览”记录（暂仅支持最近十条）</view>
+    <view wx:if="{{ViewerScanList3}}">
+    <view class="item-1" wx:for="{{ViewerScanList3}}" wx:for-item="item1" wx:key="idxscan">
+        <block wx:if="{{item1.viewer_user.id}}">
+        <navigator url="/pages/otherDetails/otherDetails?user_id={{item1.viewer_user.id}}">
+        <view class="item-1-1">
+            <image src="{{item1.viewer_user.avatarUrl}}"></image>
+            <view class="item-1-1-1">
+                <text class="item-1-1-1-1">{{item1.viewer_user.nickName}}</text>
+                <view class="item-1-1-1-2">
+                    <text class="item-1-1-1-2-1">{{item1.create_date}}</text>
+                    <text class="item-1-1-1-2-1">,扫码“{{item1.source}}”(创建于{{item1.tacit_date}})</text>
+                </view>
+            </view>
+        </view>
+        </navigator>
+        </block>
+        <block wx:else>
+        <view class="item-1-1">
+            <image src="{{item1.viewer_user.avatarUrl}}"></image>
+            <view class="item-1-1-1">
+                <view class="item-1-1-1-1">
+                    <text class="item-1-status" wx:if="{{item1.viewer_user.if_status_name}}">{{item1.viewer_user.if_status_name}}</text>
+                    {{item1.viewer_user.nickName}}
+                </view>
+                <view class="item-1-1-1-2">
+                    <text class="item-1-1-1-2-1">{{item1.create_date}}</text>
+                    <text class="item-1-1-1-2-1">,扫码“{{item1.source}}”(创建于{{item1.tacit_date}})</text>
+                </view>
+            </view>
+        </view>
+        </block>
+        <view class="item-1-1-2">
+            {{item1.viewer_count}}次
+        </view>
+    </view>
+    </view>
+    <view class="item-2" hidden="{{ViewerScanList3}}">
+        扫码我的活动的人获取中
+    </view>
+    <view class="item-3" wx:if="{{ViewerScanList3.length==0}}">
+        暂时还没看官哟，赶紧去通知好友参与你的分享扫码哟
+    </view>
+</view>

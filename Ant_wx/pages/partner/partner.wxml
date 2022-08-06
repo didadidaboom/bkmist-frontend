@@ -1,0 +1,13 @@
+<!--pages/partner/partner.wxml-->
+<navBar title="入伙" background='#60d1cf' back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view class="manu">
+    <view class="item-1">
+        <text class="board-background">声明：此产品属于个人自娱自乐，围绕避开“速食主义”的理念兼具功能灵活可成长的概念，打造长关系的世界，我们就要做不一样。如果你也有兴趣一起打造乌托邦，可以动动手指帮忙“投稿”哟，或者帮忙投票“开发优先级”，甚至考虑加入这个可能没有回报的组织。我相信团队就是这样慢慢走到一起，我也不知道能遇到多少人，即使遇到了，一路到终点站剩几个人</text>
+    </view>
+    <view class="item-2">
+        <text class="title">入伙联系</text>
+        <text class="subtile">添加微信：choooogng</text>
+        <text class="subtile">申请备注：入伙+个人兴趣描述</text>
+        <text class="subtile">最好兴趣偏“计划”中软文化计划（非必须）</text>
+    </view>
+</view>

@@ -1,0 +1,28 @@
+<!--pages/plan/plan.wxml-->
+<navBar title="计划" background='#60d1cf' back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view class="manu">
+    <view class="item-1">
+        <text class="board-background">目的：为了让大家清楚我们在做什么，该做什么，特地提前开放未来计划，后面也将陆续开放“计划”和“投稿的活动”功能开发的优先顺序，把优先级选择权交给各位客官，已更快的满足大家需求</text>
+    </view>
+    <view class="item-2">
+        <text class="title">开发计划 (优先级从高到低)</text>
+        <text class="subtile">1,投稿功能</text>
+        <text class="subtile">2,优先级投票</text>
+        <view class="subtile">3,通知显示</view>
+        <view class="subtile">4,坦白局</view>
+        <view class="subtile">5,点亮足迹</view>
+        <view class="subtile">6,通知显示</view>
+        <view class="subtile">7,推荐算法</view>
+        <view class="subtile">8,聊天功能</view>
+        <view class="subtile">9,点亮足迹</view>
+        <view class="subtile">暂定顺序，更多等大家投稿</view>
+    </view>
+    <view class="item-2">
+        <text class="title">软文化计划</text>
+        <text class="subtile">1,头像系列设计（暂时考虑设计几套头部局部细节，通图过组合进行捏脸）</text>
+        <text class="subtile">2,留学内容孵化 (后期通过我们独立的基础框架-网页论坛，在框架内做内容运营，用于停泊出海留学流量)
+        <text class="subtile">3,统一整个软件内icon风格</text>
+        <text class="subtile">4,玩法拆解介绍</text>
+        </text>
+    </view>
+</view>

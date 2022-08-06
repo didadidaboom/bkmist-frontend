@@ -1,0 +1,44 @@
+<!--pages/message/message.wxml-->
+<view class="c3-manu">
+    <view class="c3-item-1">
+        <view class="item-1">
+            <image src="/static/page3-png/icons8-mongrol-100.png"></image>
+            <text>赞和收藏</text>
+        </view>
+        <view class="item-1">
+            <image src="/static/page3-png/icons8-mongrol-100.png"></image>
+            <text>最近来访</text>
+        </view>
+        <view class="item-1">
+            <image src="/static/page3-png/icons8-mongrol-100.png"></image>
+            <text>评论和@</text>
+        </view>
+    </view>
+    <view class="c3-item-2">
+            <view class="msg">
+                <view class="msg-png">
+                    <image src="/static/page3-png/icons8-mek-quake-64.png"></image>
+                </view>
+                <view class="msg-txt">
+                    <view class="txt-1">
+                        <view class="txt-1-left">系统消息</view>
+                        <view class="txt-1-right">2021-11-12</view>
+                    </view>
+                    <view class="txt-2">你好！这是消息通知测试，收到请回复。我们会尽快通知您进一步情况。</view>
+                </view>
+            </view>
+            <view class="msg">
+                <view class="msg-png">
+                    <image src="/static/page3-png/icons8-mek-quake-64.png"></image>
+                </view>
+                <view class="msg-txt">
+                    <view class="txt-1">
+                        <view class="txt-1-left">系统消息</view>
+                        <view class="txt-1-right">2021-11-12</view>
+                    </view>
+                    <view class="txt-2">你好！这是消息通知测试，收到请回复。我们会尽快通知您进一步情况。</view>
+                </view>
+            </view>
+    </view>
+</view>
+

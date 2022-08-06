@@ -1,0 +1,11 @@
+<!--pages/momentStatus/momentStatus.wxml-->
+<navBar title="瞬间显示位置" background='#60d1cf' back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view class="manu">
+    <view class="item-1">
+        <radio-group class="item-1-1" bindchange="onClickChoose">
+            <radio value="0">广场可见</radio>
+            <radio value="1">主页可见</radio>
+            <radio value="2">个人可见</radio>
+        </radio-group>
+    </view>
+</view>

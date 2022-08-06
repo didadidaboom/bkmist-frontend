@@ -1,0 +1,214 @@
+<!--pages/otherDetails/otherDetails.wxml-->
+<navBar title='他的主页' back="{{true}}" home="{{true}}" bindback="handlerGobackClick" bindhome="handlerGohomeClick" background='#60d1cf'></navBar>
+<view class="manu">
+    <!--上半部分-->
+    <view class="manu-up">
+        <view class="item-2">
+            <view class="item-2-1">
+                <image src="{{otherInfo.avatarUrl}}"></image>
+            </view>
+            <view>{{otherInfo.nickName}}</view>
+            <view>{{otherInfo.create_date}}天</view>
+        </view>
+        <view class="item-classify">
+            <view class="item-classify-2" wx:if="{{classify_type==0}}">瞬间</view>
+            <view class="item-classify-1" bindtap="onClickClassify" data-value="{{0}}" wx:else>瞬间</view>
+            <view class="item-classify-2" wx:if="{{classify_type==1}}">他的独白</view>
+            <view class="item-classify-1" bindtap="onClickClassify" data-value="{{1}}" wx:else>他的独白</view>
+            <view class="item-classify-2" wx:if="{{classify_type==2}}">朋友眼中的他</view>
+            <view class="item-classify-1" bindtap="onClickClassify" data-value="{{2}}" wx:else>朋友眼中的他</view>
+        </view>
+    </view>
+    <!--下半部分--瞬间-->
+    <view class="manu-down" wx:if="{{classify_type==0}}">
+        <view class="item-1-down">
+            <text>被关注{{otherInfo.focused_count}}</text>
+            <text>偷看他{{otherInfo.viewer_count}}</text>
+        </view>
+        <view class="item-2-down" wx:if="{{false}}">
+            <text>#新加坡留学</text>
+            <text>#NTU</text>
+        </view>
+        <view wx:if="{{momentList_flag==2}}">
+        <view class="item-3-down" wx:for="{{momentList}}" wx:key="idxmoment">
+            <view class="time">
+                <text>{{item.create_date}}</text>
+                <!--可见状态-->
+                <text class="if_status" wx:if="{{item.if_status}}">裂</text>
+            </view>
+            <navigator url="/pages/momentDetails/momentDetails?moment_id={{item.id}}">
+            <view wx:if="{{item.imageList.length}}">
+                <view class="loopimage" wx:for="{{item.imageList}}" wx:key="idximage">
+                    <image mode="widthFix" src="{{item.path}}"></image>
+                </view>
+            </view>
+            <text>{{item.content}}</text>
+            </navigator>
+            <view class="topic" wx:if="{{item.topic}}">
+                <view wx:for="{{item.topic}}" wx:key="idxtopic">
+                    <navigator url="/pages/topicMoment/topicMoment?topic_id={{item.id}}">
+                        #{{item.title}}
+                    </navigator>
+                </view>
+            </view>
+            <view class="address" wx:if="{{item.address}}">
+                <navigator url="/pages/addressMoment/addressMoment?address_id={{item.address.id}}">
+                    <image class="setting-img-content" src="/static/default/icons8-location-48.png"></image>
+                    {{item.address.name}}
+                    </navigator>
+            </view>
+        </view>
+        </view>
+        <view wx:if="{{momentList_flag==1}}">
+            <view class="reminder">他还没发瞬间哟，赶紧去通知他参与分享吧</view>
+            <view class="reminder-bt" bindtap="onClickInvitePage1" wx:if="{{invitePage1}}">
+                <text>点击发送邀请</text>
+            </view>
+            <view class="reminder-bt" wx:else>
+                <text class="invited">点击发送邀请</text>
+            </view>
+        </view>
+        <view wx:if="{{momentList_flag==0}}">
+            <view class="reminder">123木头人，嘘...打开中...</view>
+        </view>
+    </view>
+    <!--底部-->
+    <view class="bottom-window-left">
+        <text wx:if="{{otherInfo.is_focused}}" bindtap="onClickFocusUser">已关注</text>
+        <text wx:else bindtap="onClickFocusUser">关注</text>
+    </view>
+    <view class="bottom-window-right">
+        <text bindtap="onClickSwitch">首页</text>
+    </view>
+    <!--下半部分--他的独白-->
+    <view class="manu-down" wx:if="{{classify_type==1}}">
+        <view class="item-1-down">
+            <text>偷看他独白{{otherInfo.viewer_count_page2}}</text>
+        </view>
+        <view class="item-2-down">
+            <text>“我的独白”内容只能来源于用户本人</text>
+        </view>
+        <view wx:if="{{tacitList_flag==2}}">
+        <view class="item-3-down" wx:for="{{tacitList}}" wx:key="idxtacit">
+            <view wx:if="{{item.type==10001}}">
+                <view class="time">
+                    <text>{{item.create_date}}</text>
+                    <view class="item-askme-ini" bindtap="onClickInitialteTacit">默契测试</view>
+                </view>
+                <view wx:for="{{item.tacitDataList}}" wx:key="idxtacitdata">
+                    <view class="title">{{item.title}}</view>
+                    <view class="content" wx:if="{{item.selected_answer==1}}">{{item.answer1}}</view>
+                    <view class="content" wx:if="{{item.selected_answer==2}}">{{item.answer2}}</view>
+                    <view class="content" wx:if="{{item.selected_answer==3}}">{{item.answer3}}</view>
+                    <view class="content" wx:if="{{item.selected_answer==4}}">{{item.answer4}}</view>
+                    <view class="content" wx:if="{{item.selected_answer==5}}">{{item.answer5}}</view>
+                </view>
+            </view>
+            <view wx:if="{{item.type==20001}}">
+                <view class="time">
+                    <text>{{item.create_date}}</text>
+                    <view class="item-askme-ini" bindtap="onClickInitiateAskMe">坦白局</view>
+                </view>
+                <view wx:if="{{item.tacitDataList[0]}}">
+                    <view class="item-preaskme" wx:for="{{item.tacitDataList}}" wx:for-item="item2" wx:key="idxaskme">
+                        <view class="item-askme">
+                            <view class="item-askme-img" wx:if="{{item2.user_id}}">
+                                <navigator url="/pages/otherDetails/otherDetails?user_id={{item2.user_id}}">
+                                    <image src="{{item2.avatarUrl}}"></image>
+                                </navigator>
+                            </view>
+                            <view class="item-askme-img" wx:else>
+                                <image src="{{item2.avatarUrl}}"></image>
+                            </view>
+                            <view class="item-askme-content" bindtap="onClickAskMeRecord" data-tacitrecordid="{{item.id}}">
+                            <text class="item-askme-status" wx:if="{{item2.if_status_name}}">{{item2.if_status_name}}</text>
+                            <text>{{item2.content}}</text>
+                            <text class="item-askme-date">{{item2.create_date}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view wx:else>
+                    <view>
+                        <text>他发起了“坦白局”活动，暂时还没邀请朋友进行"条件匿名/公开"提问哟（Ask me anything），赶紧想方设法通知他吧</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        </view>
+        <view wx:if="{{tacitList_flag==1}}">
+            <view class="reminder">呀！他暂时没有参与活动，想了解他自己眼中的自己，就赶紧邀请他发布活动哟</view>
+            <view class="reminder-bt" bindtap="onClickInviteSelf" wx:if="{{inviteSelf}}">
+                <text>点击发送"默契测试"活动邀请</text>
+            </view>
+            <view class="reminder-bt" wx:else>
+                <text class="invited">点击发送"默契测试"活动邀请</text>
+            </view>
+            <view class="reminder-bt" bindtap="onClickInviteSelfAskMe" wx:if="{{inviteSelfAskMe}}">
+                <text>点击发送"坦白局"活动邀请</text>
+            </view>
+            <view class="reminder-bt" wx:else>
+                <text class="invited">点击发送"坦白局"活动邀请</text>
+            </view>
+        </view>
+        <view wx:if="{{tacitList_flag==0}}">
+            <view class="reminder">123木头人，嘘...打开中...</view>
+        </view>
+    </view>
+    <!--下半部分 -朋友眼中的我-->
+    <view class="manu-down" wx:if="{{classify_type==2}}">
+        <view class="item-1-down">
+            <text>参与他活动{{otherInfo.tacit_write_count}}</text>
+            <text>偷看他{{otherInfo.viewer_count_page3}}</text>
+        </view>
+        <view class="item-1-classify_type2_type">
+            <view class="item-1-classify_type2_type-2" wx:if="{{classify_type2_type==0}}">默契测试</view>
+            <view class="item-1-classify_type2_type-1" bindtap="onClickClassifyType2tpye" data-value="{{0}}" wx:else>默契测试</view>
+        </view>
+        <view class="item-2-down">
+            <text>“朋友眼中的我”内容只能来源于微信分享的朋友</text>
+        </view>
+        <view wx:if="{{tacitReplyList_flag==2}}">
+        <view class="item-3-down" wx:for="{{tacitReplyList}}" wx:for-item="item1" wx:key="idxtacit" wx:for-index="tacitidx">
+            <view  wx:if="{{item1.replyList.length}}">
+            <view class="time">
+                <text>{{item1.create_date}}</text>
+            </view>
+            <view wx:for="{{item1.tacitDataList}}" wx:key="idxtacitdata" wx:for-item="itemtacit" wx:for-index="indextacit">
+                <view class="title">{{itemtacit.title}}</view>
+                <view class="content-start" wx:for="{{item1.replyList}}" wx:for-item="item2" wx:key="idxreply" wx:for-index="index2tacit">
+                    <view class="content-start-mid">
+                        <navigator wx:if="{{item2.user_id}}" class="content-start-mid-nav" url="/pages/otherDetails/otherDetails?user_id={{item2.user_id}}">
+                            <image src="{{item2.avatarUrl}}"></image>
+                        </navigator>
+                        <image wx:else src="{{item2.avatarUrl}}"></image>
+                        <view class="content-start-status" wx:if="{{item2.if_status}}">{{item2.if_status_name}}</view>
+                        <view class="content" wx:if="{{item2.answer[indextacit].selected_answer==1}}">{{itemtacit.answer1}}</view>
+                        <view class="content" wx:if="{{item2.answer[indextacit].selected_answer==2}}">{{itemtacit.answer2}}</view>
+                        <view class="content" wx:if="{{item2.answer[indextacit].selected_answer==3}}">{{itemtacit.answer3}}</view>
+                        <view class="content" wx:if="{{item2.answer[indextacit].selected_answer==4}}">{{itemtacit.answer4}}</view>
+                        <view class="content" wx:if="{{item2.answer[indextacit].selected_answer==5}}">{{itemtacit.answer5}}</view>
+                    </view>
+                    <view class="match">
+                        <image class="setting-img-content" wx:if="{{item2.self_label}}" src="/static/default/icons8-user-48.png"></image>
+                        <view>匹配{{item2.match_count}}%</view>
+                        <view wx:if="{{item2.is_favor}}" data-mid="{{item2.id}}" data-mtacitindex="{{tacitidx}}" data-mreplyindex="{{index2tacit}}" bindtap="onClickLikeTacitReply">
+                            <image class="setting-img-pressed" src="/static/default/icons8-comment-like-48.png"></image>
+                        </view>
+                        <view wx:else data-mid="{{item2.id}}" data-mtacitindex="{{tacitidx}}" data-mreplyindex="{{index2tacit}}" bindtap="onClickLikeTacitReply">
+                            <image class="setting-img" src="/static/default/icons8-comment-like-48.png"></image>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            </view>
+        </view>
+        </view>
+        <view wx:if="{{tacitReplyList_flag==1}}">
+            <view class="reminder">呀！他暂时没有参与活动，想了解“朋友”眼中的他，就赶紧邀请他参与分享活动哟</view>
+        </view>
+        <view wx:if="{{tacitReplyList_flag==0}}">
+            <view class="reminder">123木头人，嘘...打开中...</view>
+        </view>
+    </view>
+</view>

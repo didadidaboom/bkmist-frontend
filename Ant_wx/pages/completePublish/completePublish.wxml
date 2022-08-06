@@ -1,0 +1,11 @@
+<!--pages/completePublish/completePublish.wxml-->
+<navBar title="发布完成" background='#60d1cf'></navBar>
+<view class="manu">
+    <navigator url="/pages/momentDetails/momentDetails?moment_id={{moment_id}}">
+        <button class="intro">查看记录</button>
+    </navigator>
+    <navigator url="/pages/publish/publish">
+        <button class="intro1">再次发布</button>
+    </navigator>
+    <button class="intro1" bindtap="onClickSwitch">返回主页</button>
+</view>

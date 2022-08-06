@@ -1,0 +1,23 @@
+<!--pages/systemmessage/systemmessage.wxml-->
+<navBar title="系统消息发布" background='#60d1cf' back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view class="manu">
+    <view class="item-1">
+        <view bindtap="onClickPublish">发布</view>
+    </view>
+    <textarea value="{{content}}" bindinput="onClickContent" placeholder="系统通知发布，type20000以下发送给未登录用户，type20000以上发布给登陆用户" auto-focus="True"></textarea>
+    <!-- choices-->
+    <view class="item-2">
+        填写类型:
+        <input class="item-2-type" bindinput="onClickType" placeholder="比如：20000"></input>
+    </view>
+    <view class="item-3-system">
+        系统消息类型列表：
+        <view wx:for="{{presystemlist}}" wx:key="idxpre">
+            <view class="item-3-system-up">
+            <view>{{item.type}}</view>
+            <view class="item-3-system-del" bindtap="onClickTypeDel" data-type_id="{{item.id}}" data-index="{{index}}">删除</view>
+            </view>
+            <text class="item-3-system-text" user-select="{{true}}">{{item.content}}</text>
+        </view>
+    </view>
+</view>

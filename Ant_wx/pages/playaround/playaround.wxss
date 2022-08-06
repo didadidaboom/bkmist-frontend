@@ -1,0 +1,116 @@
+/* pages/playaround/playaround.wxss */
+.manu{
+    font-size: 32rpx;
+    word-break: break-all;
+    word-wrap: break-word;
+    font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    padding-top: 20rpx;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+    padding-bottom: 20rpx;
+}
+.item-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20rpx;
+}
+.board-background{
+    color: #60d1cf;
+}
+.item-2{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20rpx;
+    border: 1rpx solid #60d1cf;
+    border-radius: 5%;
+}
+.title{
+    font-size: larger;
+    color: #60d1cf;
+}
+.subtile{
+    padding-left: 10rpx;
+}
+.content{
+    padding-left: 20rpx;
+}
+/*入口*/
+.item-login{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.item-login-module{
+    border: 1rpx solid #60d1cf;
+    padding-left: 50rpx;
+    padding-right: 50rpx;
+    border-radius: 50%;
+    background-color: #60d1cf;
+}
+
+/*底部*/
+.bottom-window-1{
+    width: 150rpx;
+    height: 60rpx;
+    position: fixed;
+    bottom: 75rpx;
+    right: 50rpx;
+    z-index: 20;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    background-color: white;
+    overflow-y: scroll;
+    
+    border: 1rpx solid #60d1cf;
+    border-radius: 50%;
+}
+.bottom-window-2{
+    width: 150rpx;
+    height: 60rpx;
+    position: fixed;
+    bottom: 150rpx;
+    right: 50rpx;
+    z-index: 20;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    background-color: white;
+    overflow-y: scroll;
+    
+    border: 1rpx solid #60d1cf;
+    border-radius: 50%;
+}
+.bottom-window-3{
+    width: 150rpx;
+    height: 60rpx;
+    position: fixed;
+    bottom: 225rpx;
+    right: 50rpx;
+    z-index: 20;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    background-color: white;
+    overflow-y: scroll;
+    
+    border: 1rpx solid #60d1cf;
+    border-radius: 50%;
+}
+button{
+    width: fit-content;
+    height: fit-content;
+    font-size: small;
+}
+.item-entrance{
+    color: red;
+    border-bottom: 1rpx solid #b8d8d7;
+}

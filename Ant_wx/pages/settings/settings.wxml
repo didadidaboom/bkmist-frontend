@@ -1,0 +1,14 @@
+<!--pages/settings/settings.wxml-->
+<navBar title="设置" background='#60d1cf' back="{{true}}" bindback="handlerGobackClick"></navBar>
+<view class="manu">
+    <view class="item-1">
+        <view class="item-1-1" bindtap="onClickLogout">退出</view>
+        <view class="item-1-1" bindtap="onClickDelAccount">删除账号</view>
+        <navigator url="/pages/feedback/feedback">
+            <view class="item-1-1">问题反馈</view>
+        </navigator>
+        <navigator url="/pages/about/about">
+            <view class="item-1-1">关于</view>
+        </navigator>
+    </view>
+</view>
